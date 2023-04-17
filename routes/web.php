@@ -34,7 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
-	Route::get('/opd', 'App\Http\Controllers\OpdController@index');
+	Route::get('/opd', ['as' => 'opd.index', 'uses' => 'App\Http\Controllers\OpdController@index']);
+	Route::get('/opd/realisasi-keuangan', ['as' => 'realisasi_keuangan.index', 'uses' => 'App\Http\Controllers\RealisasiKeuanganController@index']);
+	Route::get('/opd/realisasi-fisik', ['as' => 'realisasi_fisik.index', 'uses' => 'App\Http\Controllers\OpdController@index']);
 	Route::post('/opd/hapus/{id}', 'App\Http\Controllers\OpdController@destroy')->name('hapus');
 });
 

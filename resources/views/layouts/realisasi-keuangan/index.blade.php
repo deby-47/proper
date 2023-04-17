@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Daftar OPD</title>
+    <title>Realisasi Keuangan</title>
     <!-- Favicon -->
     <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
@@ -61,7 +61,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.index') }}">
+                                        <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
                                             {{ __('Realisasi Keuangan') }}
                                         </a>
                                     </li>
@@ -182,7 +182,7 @@
                             <div class="col">
                                 <div class="card bg-default shadow">
                                     <div class="card-header bg-transparent border-0">
-                                        <h3 class="text-white mb-0">Daftar Organisasi Perangkat Daerah</h3>
+                                        <h3 class="text-white mb-0">Realisasi Keuangan</h3>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table align-items-center table-dark table-flush">
@@ -190,41 +190,54 @@
                                                 <tr>
                                                     <th scope="col" class="sort" data-sort="no" style="text-align:center;font-size:12px;">No</th>
                                                     <th scope="col" class="sort" data-sort="nama" style="text-align:center;font-size:12px;"><strong> Organisasi Perangkat Daerah</strong></th>
+                                                    <th scope="col" class="sort" data-sort="anggaran" style="text-align:center;font-size:12px;">Anggaran</th>
+                                                    <th scope="col" class="sort" data-sort="realisasi" style="text-align:center;font-size:12px;">Realisasi</th>
+                                                    <th scope="col" class="sort" data-sort="persentase" style="text-align:center;font-size:12px;">%</th>
                                                     <th scope="col" class="sort" style="text-align:center;font-size:12px;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
-                                                @foreach ($opd as $key => $opds)
+                                                @foreach ($rk as $key => $rks)
                                                 <tr>
                                                     <th scope="row">
                                                         <div class="media align-items-center">
                                                             <div class="media-body" style="text-align:center">
-                                                                <span class="name mb-0 text-sm">{{ ($opd->currentpage()-1) * $opd->perpage() + $key + 1 }}</span>
+                                                                <span class="name mb-0 text-sm">{{ ($rk->currentpage()-1) * $rk->perpage() + $key + 1 }}</span>
                                                             </div>
                                                         </div>
                                                     </th>
                                                     <td class="nama" style="text-align:center">
                                                         <strong>
-                                                            {{ $opds->nama }}
+                                                            {{ $rks->nama }}
+                                                        </strong>
+                                                    </td>
+                                                    <td class="anggaran" style="text-align:center">
+                                                    @php $anggaran = "Rp" . number_format($rks->jml_anggaran, 2, ',','.'); @endphp
+                                                        <strong>
+                                                            {{ $anggaran }}
+                                                        </strong>
+                                                    </td>
+                                                    <td class="realisasi" style="text-align:center">
+                                                    @php $realisasi = "Rp" . number_format($rks->jml_realisasi, 2, ',','.'); @endphp
+                                                        <strong>
+                                                            {{ $realisasi }}
+                                                        </strong>
+                                                    </td>
+                                                    <td class="persentase" style="text-align:center">
+                                                        @php $persentase = number_format($rks->jml_realisasi / $rks->jml_anggaran * 100, 2) @endphp
+                                                        <strong>
+                                                            {{ $persentase }}
                                                         </strong>
                                                     </td>
                                                     <td style="text-align:center">
-                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($opds->id) @endphp
-                                                        <a href="/opd/{{ $id }}/edit" class="edit btn btn-info btn-md">Edit</a>
+                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($rks->id) @endphp
+                                                        <a href="/realisasi-keuangan/{{ $id }}/edit" class="edit btn btn-info btn-md">Edit</a>
                                                         <a href="javascript:void(0)" class="edit btn btn-danger btn-md">Hapus</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                    </div>
-                                    <!-- Card footer -->
-                                    <div class="card-footer py-4">
-                                        <nav aria-label="...">
-                                            <ul class="pagination justify-content-end mb-0">
-                                                <h3 class="mb-0">{{ $opd->withQueryString()->links() }}</h3>
-                                            </ul>
-                                        </nav>
                                     </div>
                                 </div>
                             </div>
