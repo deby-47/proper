@@ -182,7 +182,7 @@
                             <div class="col">
                                 <div class="card bg-default shadow">
                                     <div class="card-header bg-transparent border-0">
-                                        <h3 class="text-white mb-0">Realisasi Keuangan</h3>
+                                        <h3 class="text-white mb-0">Realisasi Fisik</h3>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table align-items-center table-dark table-flush">
@@ -197,41 +197,41 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
-                                                @foreach ($rk as $key => $rks)
+                                                @foreach ($rf as $key => $rfs)
                                                 <tr>
                                                     <th scope="row">
                                                         <div class="media align-items-center">
                                                             <div class="media-body" style="text-align:center">
-                                                                <span class="name mb-0 text-sm">{{ ($rk->currentpage()-1) * $rk->perpage() + $key + 1 }}</span>
+                                                                <span class="name mb-0 text-sm">{{ ($rf->currentpage()-1) * $rf->perpage() + $key + 1 }}</span>
                                                             </div>
                                                         </div>
                                                     </th>
                                                     <td class="nama" style="text-align:center">
                                                         <strong>
-                                                            {{ $rks->nama }}
+                                                            {{ $rfs->nama }}
                                                         </strong>
                                                     </td>
                                                     <td class="anggaran" style="text-align:center">
-                                                        @php $anggaran = "Rp" . number_format($rks->jml_anggaran, 2, ',','.'); @endphp
+                                                        @php $anggaran = "Rp" . number_format($rfs->jml_anggaran, 2, ',','.'); @endphp
                                                         <strong>
                                                             {{ $anggaran }}
                                                         </strong>
                                                     </td>
                                                     <td class="realisasi" style="text-align:center">
-                                                        @php $realisasi = "Rp" . number_format($rks->jml_realisasi, 2, ',','.'); @endphp
+                                                        @php $realisasi = "Rp" . number_format($rfs->jml_realisasi, 2, ',','.'); @endphp
                                                         <strong>
                                                             {{ $realisasi }}
                                                         </strong>
                                                     </td>
                                                     <td class="persentase" style="text-align:center">
-                                                        @php $persentase = number_format($rks->jml_realisasi / $rks->jml_anggaran * 100, 2) @endphp
+                                                        @php $persentase = number_format($rfs->jml_realisasi / $rfs->jml_anggaran * 100, 2) @endphp
                                                         <strong>
                                                             {{ $persentase }}
                                                         </strong>
                                                     </td>
                                                     <td style="text-align:center">
-                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($rks->id) @endphp
-                                                        <a href="/realisasi-keuangan/{{ $id }}/edit" class="edit btn btn-info btn-md">Edit</a>
+                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($rfs->id) @endphp
+                                                        <a href="/realisasi-fisik/{{ $id }}/edit" class="edit btn btn-info btn-md">Edit</a>
                                                         <a href="javascript:void(0)" class="edit btn btn-danger btn-md">Hapus</a>
                                                     </td>
                                                 </tr>
@@ -243,7 +243,7 @@
                                     <div class="card-footer py-4">
                                         <nav aria-label="...">
                                             <ul class="pagination justify-content-end mb-0">
-                                                <h3 class="mb-0">{{ $rk->withQueryString()->links() }}</h3>
+                                                <h3 class="mb-0">{{ $rf->withQueryString()->links() }}</h3>
                                             </ul>
                                         </nav>
                                     </div>
