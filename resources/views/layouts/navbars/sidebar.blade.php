@@ -67,10 +67,10 @@
                 </div>
             </form>
             <!-- Navigation -->
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-3">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                        <i class="ni ni-tv-5 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -88,12 +88,17 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
-                                    {{ __('Realisasi Keuangan') }}
+                                    {{ __('Pergeseran Anggaran') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
+                                    {{ __('Penyerapan Anggaran') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('realisasi_fisik.index') }}">
-                                    {{ __('Realisasi Fisik') }}
+                                    {{ __('Capaian Output') }}
                                 </a>
                             </li>
                         </ul>
