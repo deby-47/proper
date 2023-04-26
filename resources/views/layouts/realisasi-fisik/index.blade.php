@@ -66,7 +66,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.index') }}">
+                                        <a class="nav-link" href="{{ route('realisasi_fisik.index') }}">
                                             {{ __('Realisasi Fisik') }}
                                         </a>
                                     </li>

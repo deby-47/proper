@@ -66,7 +66,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.index') }}">
+                                        <a class="nav-link" href="{{ route('realisasi_fisik.index') }}">
                                             {{ __('Realisasi Fisik') }}
                                         </a>
                                     </li>
@@ -225,9 +225,13 @@
                                                     </td>
                                                     <td class="persentase" style="text-align:center">
                                                         @php $persentase = number_format($rks->jml_realisasi / $rks->jml_anggaran * 100, 2) @endphp
-                                                        <strong>
-                                                            {{ $persentase }}
-                                                        </strong>
+                                                        <div class="d-flex align-items-center">
+                                                            <div>
+                                                                <div class="progress" style="height: 20px;">
+                                                                    <div id="" class="progress-bar" role="progress" v-bind:aria-valuenow="{{ $persentase }}" aria-valuemin="0" aria-valuemax="100">{{ $persentase }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                     <td style="text-align:center">
                                                         @php $id = Illuminate\Support\Facades\Crypt::encrypt($rks->id) @endphp
@@ -271,6 +275,10 @@
                 <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
                 <!-- Argon JS -->
                 <script src="../assets/js/argon.js?v=1.2.0"></script>
+
+                <script>
+                    document.getElementById('mygraph').style.height = my_height + "px";
+                </script>
 </body>
 
 </html>
