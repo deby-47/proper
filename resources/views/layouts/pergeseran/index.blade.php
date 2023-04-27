@@ -163,7 +163,12 @@
                                                         </strong>
                                                     </td>
                                                     <td class="ikpa" style="text-align:center">
+                                                        @if($pgs->frekuensi_revisi == 0)
+                                                        @php $nilai_ikpa = number_format(100, 2); @endphp
+                                                        @else
                                                         @php $nilai_ikpa = number_format(1 / $pgs->frekuensi_revisi * 100, 2); @endphp
+                                                        @endif
+                                                        
                                                         <strong>
                                                             {{ $nilai_ikpa }}
                                                         </strong>
