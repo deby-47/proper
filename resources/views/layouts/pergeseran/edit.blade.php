@@ -24,7 +24,7 @@
         <div class="container-fluid mt--7">
             <div class="header-body mt-7 mb-7">
                 <div class="col-xs-6" style="position:fixed; left: 300px; right: 80px;">
-                @foreach ($pg as $pgs)
+                    @foreach ($pg as $pgs)
                     <form method="POST" class="box-form">
                         @csrf
                         @if ($errors->any())

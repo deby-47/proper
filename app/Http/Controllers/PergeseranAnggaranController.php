@@ -85,6 +85,7 @@ class PergeseranAnggaranController extends Controller
             'frekuensi_revisi' => $request->frekuensi
         ]);
 
-        return Redirect::to(Session::get('pg_url'));
+        // return Redirect::to(Session::get('pg_url'));
+        return redirect(Session::get('pg_url'))->with('success','Data berhasi diubah!');
     }
 }

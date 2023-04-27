@@ -120,6 +120,11 @@
         </div>
         <!-- Page content -->
         <div class="container-fluid mt--6">
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{Session::get('success')}}
+        </div>
+        @endif
             <div class="row">
                 <div class="col">
                     <div class="card">
@@ -168,7 +173,7 @@
                                                         @else
                                                         @php $nilai_ikpa = number_format(1 / $pgs->frekuensi_revisi * 100, 2); @endphp
                                                         @endif
-                                                        
+
                                                         <strong>
                                                             {{ $nilai_ikpa }}
                                                         </strong>
