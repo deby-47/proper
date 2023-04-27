@@ -70,12 +70,19 @@
             <ul class="navbar-nav mr-3">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-5 text-primary"></i> {{ __('Dashboard') }}
+                        <i class="ni ni-chart-pie-35 ni-tv-5 text-primary"></i> {{ __('Grafik Kinerja') }}
                     </a>
                     <a class="nav-link" href="{{ route('opd.index') }}">
-                    <i class="ni ni-tv-5 text-primary"></i> {{ __('OPD') }}
+                        <i class="ni ni-tv-5 text-primary"></i> {{ __('OPD') }}
                     </a>
                 </li>
+            </ul>
+            <!-- Divider -->
+            <hr class="my-3">
+            <!-- Heading -->
+            <h6 class="navbar-heading text-muted">Penilaian Kinerja</h6>
+            <!-- Navigation -->
+            <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                         <i class="fab fa-laravel" style="color: #f4645f;"></i>
@@ -91,7 +98,22 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
+                                    {{ __('Deviasi Rencana Penarikan Dana') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
                                     {{ __('Penyerapan Anggaran') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
+                                    {{ __('Pengelolaan UP dan TUP') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
+                                    {{ __('Dispensasi SPM') }}
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -101,19 +123,6 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-            </ul>
-            <!-- Divider -->
-            <hr class="my-3">
-            <!-- Heading -->
-            <h6 class="navbar-heading text-muted">Penilaian Kinerja</h6>
-            <!-- Navigation -->
-            <ul class="navbar-nav mb-md-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html" target="_blank">
-                        <i class="ni ni-chart-pie-35"></i>
-                        <span class="nav-link-text">Grafik Kinerja</span>
-                    </a>
                 </li>
             </ul>
         </div>
