@@ -88,4 +88,15 @@ class PergeseranAnggaranController extends Controller
         // return Redirect::to(Session::get('pg_url'));
         return redirect(Session::get('pg_url'))->with('success','Data berhasi diubah!');
     }
+
+    public function delete($id)
+    {
+        // PergeseranAnggaran::find($id);
+        DB::table('tab_pergeseran')->where('id_pg', $id)->update([
+            'status' => 0
+        ]);
+        
+        
+        return redirect(Session::get('pg_url'))->with('info','Data berhasi dihapus!');
+    }
 }
