@@ -39,5 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/pergeseran', ['as' => 'pergeseran.index', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@index']);
 	Route::get('/pergeseran/tambah', ['as' => 'pergeseran.create', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@create']);
 	Route::post('/pergeseran/tambah', ['as' => 'pergeseran.store', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@store']);
+	Route::get('/pergeseran/edit/{id}', ['as' => 'pergeseran.edit', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@edit']);
+	Route::post('/pergeseran/edit/{id}', ['as' => 'pergeseran.update', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@update']);
 });
 

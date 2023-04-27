@@ -174,8 +174,8 @@
                                                         </strong>
                                                     </td>
                                                     <td style="text-align:center">
-                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($pgs->id) @endphp
-                                                        <a href="/realisasi-keuangan/{{ $id }}/edit" class="edit btn btn-info btn-md">Edit</a>
+                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($pgs->id_pg) @endphp
+                                                        <a href="/pergeseran/edit/{{ $id }}" class="edit btn btn-info btn-md">Edit</a>
                                                         <a href="javascript:void(0)" class="edit btn btn-danger btn-md">Hapus</a>
                                                     </td>
                                                 </tr>

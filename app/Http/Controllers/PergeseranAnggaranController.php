@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\PergeseranAnggaran;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PergeseranAnggaranController extends Controller
@@ -15,6 +18,8 @@ class PergeseranAnggaranController extends Controller
         ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
         ->where('tab_pergeseran.status', '=', 1)
         ->paginate(10);
+
+        Session::put('pg_url', request()->fullUrl());
 
         return view('layouts.pergeseran.index', [
             'pg' => $pgs
@@ -47,5 +52,39 @@ class PergeseranAnggaranController extends Controller
 
         Alert::success('Sukses!', 'Data berhasil tersimpan');
         return view('layouts.pergeseran.create');
+    }
+
+    public function edit(Request $request)
+    {
+        $id = Crypt::decrypt($request->id);
+        $pg = DB::table('tab_pergeseran')
+            ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
+            ->where('tab_pergeseran.status', '=', 1)
+            ->where('tab_pergeseran.id_pg', $id)
+            ->get();
+        
+        return view('layouts.pergeseran.edit', [
+            'pg' => $pg
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $id = Crypt::decrypt($request->id);
+        $rules = [
+            'frekuensi' => 'required|numeric'
+        ];
+        $msg = [
+            'frekuensi.numeric' => 'Frekuensi harus berupa angka.',
+            'frekuensi.required' => 'Frekuensi harus diisi.'
+        ];
+
+        $this->validate($request, $rules, $msg);
+
+        DB::table('tab_pergeseran')->where('id_pg', $id)->update([
+            'frekuensi_revisi' => $request->frekuensi
+        ]);
+
+        return Redirect::to(Session::get('pg_url'));
     }
 }
