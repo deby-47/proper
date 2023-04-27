@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\ChartController@index')->name('home');
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
@@ -35,5 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/opd/realisasi-keuangan', ['as' => 'realisasi_keuangan.index', 'uses' => 'App\Http\Controllers\RealisasiKeuanganController@index']);
 	Route::get('/opd/realisasi-fisik', ['as' => 'realisasi_fisik.index', 'uses' => 'App\Http\Controllers\RealisasiFisikController@index']);
 	Route::post('/opd/hapus/{id}', 'App\Http\Controllers\OpdController@destroy')->name('hapus');
+
+	Route::get('/pergeseran', ['as' => 'pergeseran.index', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@index']);
+	Route::get('/pergeseran/tambah', ['as' => 'pergeseran.create', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@create']);
+	Route::post('/pergeseran/tambah', ['as' => 'pergeseran.store', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@store']);
 });
 

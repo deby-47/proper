@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Penyerapan Anggaran</title>
+    <title>Pergeseran Anggaran</title>
     <!-- Favicon -->
     <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
@@ -103,10 +103,18 @@
             </div>
         </nav>
         <!-- Header -->
-        <!-- Header -->
-        <div class="header bg-primary pb-6">
+        <div class="header bg-primary pb-6 ">
             <div class="container-fluid">
-                <div class="header-body">
+                <div class="right">
+                    <div class="row align-items-center py-4">
+                        <div class="col-lg-6 col-7">
+                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md">
+                            </nav>
+                        </div>
+                        <div class="col-lg-6 col-5 text-right">
+                            <a href="{{ route('pergeseran.create') }}" class="btn btn-sm btn-neutral">Tambah Data Pergeseran</a>
+                        </div> <br />
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,7 +129,7 @@
                             <div class="col">
                                 <div class="card bg-default shadow">
                                     <div class="card-header bg-transparent border-0">
-                                        <h3 class="text-white mb-0">Penyerapan Anggaran</h3>
+                                        <h3 class="text-white mb-0">Pergeseran Anggaran</h3>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table align-items-center table-dark table-flush">
@@ -129,51 +137,39 @@
                                                 <tr>
                                                     <th scope="col" class="sort" data-sort="no" style="text-align:center;font-size:12px;">No</th>
                                                     <th scope="col" class="sort" data-sort="nama" style="text-align:center;font-size:12px;"><strong> Organisasi Perangkat Daerah</strong></th>
-                                                    <th scope="col" class="sort" data-sort="anggaran" style="text-align:center;font-size:12px;">Anggaran</th>
-                                                    <th scope="col" class="sort" data-sort="realisasi" style="text-align:center;font-size:12px;">Realisasi</th>
-                                                    <th scope="col" class="sort" data-sort="persentase" style="text-align:center;font-size:12px;">%</th>
+                                                    <th scope="col" class="sort" data-sort="frekuensi" style="text-align:center;font-size:12px;">Frekuensi Revisi</th>
+                                                    <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;">IKPA Pergeseran Anggaran</th>
                                                     <th scope="col" class="sort" style="text-align:center;font-size:12px;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
-                                                @foreach ($rk as $key => $rks)
+                                                @foreach ($pg as $key => $pgs)
                                                 <tr>
                                                     <th scope="row">
                                                         <div class="media align-items-center">
                                                             <div class="media-body" style="text-align:center">
-                                                                <span class="name mb-0 text-sm">{{ ($rk->currentpage()-1) * $rk->perpage() + $key + 1 }}</span>
+                                                                <span class="name mb-0 text-sm">{{ ($pg->currentpage()-1) * $pg->perpage() + $key + 1 }}</span>
                                                             </div>
                                                         </div>
                                                     </th>
                                                     <td class="nama" style="text-align:center">
                                                         <strong>
-                                                            {{ $rks->nama }}
+                                                            {{ $pgs->nama }}
                                                         </strong>
                                                     </td>
-                                                    <td class="anggaran" style="text-align:center">
-                                                        @php $anggaran = "Rp" . number_format($rks->jml_anggaran, 2, ',','.'); @endphp
+                                                    <td class="frekuensi" style="text-align:center">
                                                         <strong>
-                                                            {{ $anggaran }}
+                                                            {{ $pgs->frekuensi_revisi }}
                                                         </strong>
                                                     </td>
-                                                    <td class="realisasi" style="text-align:center">
-                                                        @php $realisasi = "Rp" . number_format($rks->jml_realisasi, 2, ',','.'); @endphp
+                                                    <td class="ikpa" style="text-align:center">
+                                                        @php $nilai_ikpa = number_format(1 / $pgs->frekuensi_revisi * 100, 2); @endphp
                                                         <strong>
-                                                            {{ $realisasi }}
+                                                            {{ $nilai_ikpa }}
                                                         </strong>
-                                                    </td>
-                                                    <td class="persentase" style="text-align:center">
-                                                        @php $persentase = number_format($rks->jml_realisasi / $rks->jml_anggaran * 100, 2) @endphp
-                                                        <div class="d-flex align-items-center">
-                                                            <div>
-                                                                <div class="progress" style="height: 20px;">
-                                                                    <div id="" class="progress-bar" role="progress" v-bind:aria-valuenow="{{ $persentase }}" aria-valuemin="0" aria-valuemax="100">{{ $persentase }}</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </td>
                                                     <td style="text-align:center">
-                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($rks->id) @endphp
+                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($pgs->id) @endphp
                                                         <a href="/realisasi-keuangan/{{ $id }}/edit" class="edit btn btn-info btn-md">Edit</a>
                                                         <a href="javascript:void(0)" class="edit btn btn-danger btn-md">Hapus</a>
                                                     </td>
@@ -186,7 +182,7 @@
                                     <div class="card-footer py-4">
                                         <nav aria-label="...">
                                             <ul class="pagination justify-content-end mb-0">
-                                                <h3 class="mb-0">{{ $rk->withQueryString()->links() }}</h3>
+                                                <h3 class="mb-0">{{ $pg->withQueryString()->links() }}</h3>
                                             </ul>
                                         </nav>
                                     </div>

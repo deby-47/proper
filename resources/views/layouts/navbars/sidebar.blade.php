@@ -72,22 +72,20 @@
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="ni ni-tv-5 text-primary"></i> {{ __('Dashboard') }}
                     </a>
+                    <a class="nav-link" href="{{ route('opd.index') }}">
+                    <i class="ni ni-tv-5 text-primary"></i> {{ __('OPD') }}
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                         <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Kinerja') }}</span>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Indikator Kinerja') }}</span>
                     </a>
 
                     <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('opd.index') }}">
-                                    {{ __('OPD') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
+                                <a class="nav-link" href="{{ route('pergeseran.index') }}">
                                     {{ __('Pergeseran Anggaran') }}
                                 </a>
                             </li>
