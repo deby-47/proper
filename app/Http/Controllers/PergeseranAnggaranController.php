@@ -14,15 +14,11 @@ class PergeseranAnggaranController extends Controller
 {
     public function index()
     {
-        // $pgs = DB::table('tab_pergeseran')
-        // ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
-        // ->where('tab_pergeseran.status', '=', 1)
-        // ->paginate(10);
-
         $pgs = DB::table('tab_pergeseran')
             ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
             ->select('tab_pergeseran.id_opd', 'tab_opd.nama', DB::raw('count(id_opd) as opd'))
             ->groupBy('tab_opd.nama', 'tab_pergeseran.id_opd')
+            ->where('tab_pergeseran.status', 1)
             ->paginate(10);
 
         Session::put('pg_url', request()->fullUrl());
@@ -40,6 +36,7 @@ class PergeseranAnggaranController extends Controller
             ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
             ->where('id_opd', '=', $id)
             ->orderBy('tab_pergeseran.tanggal')
+            ->where('tab_pergeseran.status', 1)
             ->paginate(10);
 
         $title = DB::table('tab_opd')
