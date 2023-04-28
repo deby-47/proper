@@ -97,27 +97,27 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
+                                <a class="nav-link" href="{{ route('home') }}">
                                     {{ __('Deviasi Rencana Penarikan Dana') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
+                                <a class="nav-link" href="{{ route('home') }}">
                                     {{ __('Penyerapan Anggaran') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
+                                <a class="nav-link" href="{{ route('home') }}">
                                     {{ __('Pengelolaan UP dan TUP') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('realisasi_keuangan.index') }}">
+                                <a class="nav-link" href="{{ route('home') }}">
                                     {{ __('Dispensasi SPM') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('realisasi_fisik.index') }}">
+                                <a class="nav-link" href="{{ route('home') }}">
                                     {{ __('Capaian Output') }}
                                 </a>
                             </li>

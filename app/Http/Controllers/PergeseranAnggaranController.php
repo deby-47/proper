@@ -66,7 +66,8 @@ class PergeseranAnggaranController extends Controller
             'tanggal' => 'required'
         ];
         $msg = [
-            'opd.required' => 'Organisasi Perangkat Daerah harus diisi.',
+            'opd.required' => 'Organisasi Perangkat Daerah harus dipilih.',
+            'opd.numeric' => 'Organisasi Perangkat Daerah harus dipilih.',
             'keterangan.required' => 'Keterangan harus diisi.',
             'tanggal.required' => 'Tanggal harus dipilih.'
         ];
@@ -101,17 +102,19 @@ class PergeseranAnggaranController extends Controller
     {
         $id = Crypt::decrypt($request->id);
         $rules = [
-            'frekuensi' => 'required|numeric'
+            'keterangan' => 'required',
+            'tanggal' => 'required'
         ];
         $msg = [
-            'frekuensi.numeric' => 'Frekuensi harus berupa angka.',
-            'frekuensi.required' => 'Frekuensi harus diisi.'
+            'keterangan.required' => 'Keterangan harus diisi.',
+            'tanggal.required' => 'Tanggal harus dipilih.'
         ];
 
         $this->validate($request, $rules, $msg);
 
         DB::table('tab_pergeseran')->where('id_pg', $id)->update([
-            'frekuensi_revisi' => $request->frekuensi
+            'keterangan' => $request->keterangan,
+            'tanggal' => $request->tanggal
         ]);
 
         // return Redirect::to(Session::get('pg_url'));

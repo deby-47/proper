@@ -37,12 +37,16 @@
                         </div>
                         @endif
                         <div class="form-group">
-                            <label for="opd">Frekuensi Pergeseran</label>
+                            <label for="opd">Organisasi Perangkat Daerah</label>
                             <input value="{{ $pgs->nama }}" id="opd" type="text" class="form-control" name="opd" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="frekuensi">Frekuensi Pergeseran</label>
-                            <input value="{{ $pgs->frekuensi_revisi }}" id="frekuensi" type="text" class="form-control" name="frekuensi" required>
+                            <label for="keterangan">Keterangan</label>
+                            <input value="{{ $pgs->keterangan }}" id="keterangan" type="text" class="form-control" name="keterangan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal">Tanggal</label>
+                            <input value="{{ $pgs->tanggal }}" id="tanggal" type="date" class="form-control" name="tanggal" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
