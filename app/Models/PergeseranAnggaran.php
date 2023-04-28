@@ -12,12 +12,12 @@ class PergeseranAnggaran extends Model
 
     public $table = "tab_pergeseran";
 
-    protected $fillable = ['id_opd', 'frekuensi_revisi'];
+    protected $fillable = ['id_opd', 'keterangan', 'tanggal'];
 
     public function selectPergeseran()
     {
         $pgs = DB::table('tab_pergeseran')
-                ->select('id_pg', 'id_opd', 'frekuensi_revisi')
+                ->select('id_pg', 'id_opd', 'keterangan', 'tanggal')
                 ->where('status', '=', 1)
                 ->get();
         

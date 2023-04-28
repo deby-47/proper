@@ -14,15 +14,45 @@ class PergeseranAnggaranController extends Controller
 {
     public function index()
     {
+        // $pgs = DB::table('tab_pergeseran')
+        // ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
+        // ->where('tab_pergeseran.status', '=', 1)
+        // ->paginate(10);
+
         $pgs = DB::table('tab_pergeseran')
-        ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
-        ->where('tab_pergeseran.status', '=', 1)
-        ->paginate(10);
+            ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
+            ->select('tab_pergeseran.id_opd', 'tab_opd.nama', DB::raw('count(id_opd) as opd'))
+            ->groupBy('tab_opd.nama', 'tab_pergeseran.id_opd')
+            ->paginate(10);
 
         Session::put('pg_url', request()->fullUrl());
 
         return view('layouts.pergeseran.index', [
             'pg' => $pgs
+        ]);
+    }
+
+    public function details($id_opd)
+    {
+        $id = Crypt::decrypt($id_opd);
+
+        $details = DB::table('tab_pergeseran')
+            ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
+            ->where('id_opd', '=', $id)
+            ->orderBy('tab_pergeseran.tanggal')
+            ->paginate(10);
+
+        $title = DB::table('tab_opd')
+            ->join('tab_pergeseran', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
+            ->where('id',  $id)
+            ->pluck('nama')
+            ->first();
+
+        Session::put('details_url', request()->fullUrl());
+
+        return view('layouts.pergeseran.details', [
+            'detail' => $details,
+            'title' => $title
         ]);
     }
 
@@ -62,7 +92,7 @@ class PergeseranAnggaranController extends Controller
             ->where('tab_pergeseran.status', '=', 1)
             ->where('tab_pergeseran.id_pg', $id)
             ->get();
-        
+
         return view('layouts.pergeseran.edit', [
             'pg' => $pg
         ]);
@@ -86,7 +116,7 @@ class PergeseranAnggaranController extends Controller
         ]);
 
         // return Redirect::to(Session::get('pg_url'));
-        return redirect(Session::get('pg_url'))->with('success','Data berhasi diubah!');
+        return redirect(Session::get('pg_url'))->with('success', 'Data berhasi diubah!');
     }
 
     public function delete($id)
@@ -95,8 +125,7 @@ class PergeseranAnggaranController extends Controller
         DB::table('tab_pergeseran')->where('id_pg', $id)->update([
             'status' => 0
         ]);
-        
-        
-        return redirect(Session::get('pg_url'))->with('info','Data berhasi dihapus!');
+
+        return redirect(Session::get('details_url'))->with('info', 'Data berhasi dihapus!');
     }
 }

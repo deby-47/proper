@@ -142,9 +142,9 @@
                                                 <tr>
                                                     <th scope="col" class="sort" data-sort="no" style="text-align:center;font-size:12px;">No</th>
                                                     <th scope="col" class="sort" data-sort="nama" style="text-align:center;font-size:12px;"><strong> Organisasi Perangkat Daerah</strong></th>
-                                                    <th scope="col" class="sort" data-sort="frekuensi" style="text-align:center;font-size:12px;">Frekuensi Revisi</th>
-                                                    <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;">IKPA Pergeseran Anggaran</th>
-                                                    <th scope="col" class="sort" style="text-align:center;font-size:12px;">Action</th>
+                                                    <th scope="col" class="sort" data-sort="frekuensi" style="text-align:center;font-size:12px;"><strong> Frekuensi Revisi </strong></th>
+                                                    <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Pergeseran Anggaran </strong></th>
+                                                    <th scope="col" class="sort" style="text-align:center;font-size:12px;"><strong> Action </strong></th>
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
@@ -164,14 +164,14 @@
                                                     </td>
                                                     <td class="frekuensi" style="text-align:center">
                                                         <strong>
-                                                            {{ $pgs->frekuensi_revisi }}
+                                                            {{ $pgs->opd }}
                                                         </strong>
                                                     </td>
                                                     <td class="ikpa" style="text-align:center">
-                                                        @if($pgs->frekuensi_revisi == 0)
+                                                        @if($pgs->opd == 0)
                                                         @php $nilai_ikpa = number_format(100, 2); @endphp
                                                         @else
-                                                        @php $nilai_ikpa = number_format(1 / $pgs->frekuensi_revisi * 100, 2); @endphp
+                                                        @php $nilai_ikpa = number_format(1 / $pgs->opd * 100, 2); @endphp
                                                         @endif
 
                                                         <strong>
@@ -179,14 +179,8 @@
                                                         </strong>
                                                     </td>
                                                     <td style="text-align:center">
-                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($pgs->id_pg) @endphp
-                                                        <a href="/pergeseran/edit/{{ $id }}" class="edit btn btn-info btn-md">Edit</a>
-                                                        <form onsubmit="return confirm('Apakah Anda yakin akan menghapus?');" method="POST" action="{{ route('pergeseran.delete', $pgs->id_pg) }}">
-                                                            @csrf
-                                                            <button style="margin-top: 10px" type="submit" class="btn btn-xs btn-danger">
-                                                                Hapus
-                                                            </button>
-                                                        </form>
+                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($pgs->id_opd) @endphp
+                                                        <a href="pergeseran/details/{{ $id }}" class="details btn btn-info btn-md">Detail</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
