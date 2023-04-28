@@ -29,33 +29,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- Brand -->
-            <a class="navbar-brand pt-0" href="{{ route('home') }}">
-                <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
-            </a>
-            <!-- User -->
-            <ul class="nav align-items-center d-md-none">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="media align-items-center">
-                            <span class="avatar avatar-sm rounded-circle">
-                                <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
-                            </span>
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                        <div class=" dropdown-header noti-title">
-                            <h6 class="text-overflow m-0">Welcome!</h6>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                            <i class="ni ni-user-run"></i>
-                            <span>Logout</span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
             <!-- Collapse -->
             <div class="collapse navbar-collapse" id="sidenav-collapse-main">
                 <!-- Collapse header -->
@@ -138,6 +111,7 @@
         </nav>
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
         </div>
+
         <div class="container-fluid mt--7">
             <div class="row">
                 <div class="col">
@@ -148,6 +122,7 @@
                                     <h2 class="text-white mb-0">Detail Pergeseran Anggaran</h2>
                                     <h3 class="text-white mb-0"><strong> {{ $title }} </strong></h3>
                                 </div>
+                                
                             </div>
                         </div>
 
@@ -181,7 +156,7 @@
                                         </td>
                                         <td class="keterangan" style="text-align:center">
                                             <strong>
-                                            <span class="name mb-0 text-sm">{{ Carbon\Carbon::parse($details->tanggal)->translatedFormat('d F Y') }}</span>
+                                                <span class="name mb-0 text-sm">{{ Carbon\Carbon::parse($details->tanggal)->translatedFormat('d F Y') }}</span>
                                             </strong>
                                         </td>
                                         <td style="text-align:center">

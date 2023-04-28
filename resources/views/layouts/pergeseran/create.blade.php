@@ -45,8 +45,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="frekuensi">Frekuensi Pergeseran</label>
-                            <input id="frekuensi" type="text" class="form-control" name="frekuensi" placeholder="Frekuensi" required>
+                            <label for="keterangan">Keterangan</label>
+                            <input id="keterangan" type="text" class="form-control" name="keterangan" placeholder="Keterangan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal">Tanggal</label>
+                            <input id="tanggal" type="date" class="form-control" name="tanggal" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>

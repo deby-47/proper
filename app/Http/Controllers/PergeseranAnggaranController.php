@@ -62,19 +62,21 @@ class PergeseranAnggaranController extends Controller
     {
         $rules = [
             'opd' => 'required|numeric',
-            'frekuensi' => 'required|numeric'
+            'keterangan' => 'required',
+            'tanggal' => 'required'
         ];
         $msg = [
             'opd.required' => 'Organisasi Perangkat Daerah harus diisi.',
-            'frekuensi.numeric' => 'Frekuensi harus berupa angka.',
-            'frekuensi.required' => 'Frekuensi harus diisi.'
+            'keterangan.required' => 'Keterangan harus diisi.',
+            'tanggal.required' => 'Tanggal harus dipilih.'
         ];
 
         $this->validate($request, $rules, $msg);
 
         $pgs = new PergeseranAnggaran;
         $pgs->id_opd = $request->opd;
-        $pgs->frekuensi_revisi = $request->frekuensi;
+        $pgs->keterangan = $request->keterangan;
+        $pgs->tanggal = $request->tanggal;
         $pgs->save();
 
         Alert::success('Sukses!', 'Data berhasil tersimpan');
