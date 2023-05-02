@@ -251,7 +251,7 @@
                                                         </strong>
                                                     </td>
                                                     <td style="text-align:center">
-                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($pys->id_opd) @endphp
+                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($pys->id_py) @endphp
                                                         <a href="penyerapan/edit/{{ $id }}" class="details btn btn-info btn-md">Edit</a>
                                                     </td>
                                                 </tr>
