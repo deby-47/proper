@@ -114,7 +114,8 @@ class PergeseranAnggaranController extends Controller
 
         DB::table('tab_pergeseran')->where('id_pg', $id)->update([
             'keterangan' => $request->keterangan,
-            'tanggal' => $request->tanggal
+            'tanggal' => $request->tanggal,
+            'updated_at' => now()
         ]);
 
         // return Redirect::to(Session::get('pg_url'));
