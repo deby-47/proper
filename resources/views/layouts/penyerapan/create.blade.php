@@ -57,7 +57,7 @@
                             <input id="p_modal" type="text" class="form-control" name="p_modal" placeholder="Pagu Belanja Modal" required>
                         </div>
                         <div class="form-group">
-                            <label for="p_bansos">Pagu Belanja Bantuan Sosial</label>
+                            <label for="p_bansos">Pagu Belanja Bantuan Sosial & Hibah</label>
                             <input id="p_bansos" type="text" class="form-control" name="p_bansos" placeholder="Pagu Belanja Bantuan Sosial" required>
                         </div>
                         <div class="form-group">
@@ -73,8 +73,8 @@
                             <input id="r_modal" type="text" class="form-control" name="r_modal" placeholder="Realisasi Belanja Modal" required>
                         </div>
                         <div class="form-group">
-                            <label for="r_bansos">Pagu Belanja Bantuan Sosial</label>
-                            <input id="r_bansos" type="text" class="form-control" name="r_bansos" placeholder="Realisasi Belanja Bantuan Sosial" required>
+                            <label for="r_bansos">Realisasi Belanja Bantuan Sosial & Hibah</label>
+                            <input id="r_bansos" type="text" class="form-control" name="r_bansos" placeholder="Realisasi Belanja Bantuan Sosial & Hibah" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>

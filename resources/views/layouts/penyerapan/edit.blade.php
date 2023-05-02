@@ -53,7 +53,7 @@
                             <input value="{{ $pys->p_modal }}" id="p_modal" type="text" class="form-control" name="p_modal" required>
                         </div>
                         <div class="form-group">
-                            <label for="p_bansos">Pagu Belanja Bantuan Sosial</label>
+                            <label for="p_bansos">Pagu Belanja Bantuan Sosial & Hibah</label>
                             <input value="{{ $pys->p_bansos }}" id="p_bansos" type="text" class="form-control" name="p_bansos" required>
                         </div>
                         <div class="form-group">
@@ -69,7 +69,7 @@
                             <input value="{{ $pys->r_modal }}" id="r_modal" type="text" class="form-control" name="r_modal" required>
                         </div>
                         <div class="form-group">
-                            <label for="r_bansos">Realisasi Belanja Bantuan Sosial</label>
+                            <label for="r_bansos">Realisasi Belanja Bantuan Sosial & Hibah</label>
                             <input value="{{ $pys->r_bansos }}" id="r_bansos" type="text" class="form-control" name="r_bansos" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>

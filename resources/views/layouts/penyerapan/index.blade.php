@@ -40,14 +40,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Search form -->
                     <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
-                        <div class="form-group mb-0">
-                            <div class="input-group input-group-alternative input-group-merge">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                </div>
-                                <input class="form-control" placeholder="Search" type="text">
-                            </div>
-                        </div>
                         <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -124,6 +116,10 @@
             <div class="alert alert-success">
                 {{Session::get('success')}}
             </div>
+            @elseif(Session::has('warning'))
+            <div class="alert alert-warning">
+                {{Session::get('warning')}}
+            </div>
             @endif
             <div class="row">
                 <div class="col">
@@ -137,6 +133,18 @@
                                         <h3 class="text-white mb-0">Penyerapan Anggaran</h3>
                                     </div>
                                     <div class="table-responsive">
+                                        <form action="/penyerapan/cari" method="GET">
+                                            <div class="col-auto mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span>
+                                                        <div class="col-auto">
+                                                            <input type="text" name="search" class="form-control" id="search" placeholder="Search..." value="{{ old('search') }}">
+                                                        </div>
+                                                    </span>
+                                                    <button id="search" type="submit" class="btn btn-primary">Cari</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                         <table class="table align-items-center table-dark table-flush">
                                             <thead class="thead-dark">
                                                 <tr>
@@ -151,9 +159,9 @@
                                                     <th scope="col" class="sort" data-sort="p_modal" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Modal </strong></th>
                                                     <th scope="col" class="sort" data-sort="t_modal" style="text-align:center;font-size:12px;"><strong> Target Belanja Modal </strong></th>
                                                     <th scope="col" class="sort" data-sort="r_modal" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Modal </strong></th>
-                                                    <th scope="col" class="sort" data-sort="p_bansos" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Bantuan Sosial </strong></th>
-                                                    <th scope="col" class="sort" data-sort="t_bansos" style="text-align:center;font-size:12px;"><strong> Target Belanja Bantuan Sosial </strong></th>
-                                                    <th scope="col" class="sort" data-sort="r_bansos" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Bantuan Sosial </strong></th>
+                                                    <th scope="col" class="sort" data-sort="p_bansos" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Bantuan Sosial & Hibah </strong></th>
+                                                    <th scope="col" class="sort" data-sort="t_bansos" style="text-align:center;font-size:12px;"><strong> Target Belanja Bantuan Sosial & Hibah </strong></th>
+                                                    <th scope="col" class="sort" data-sort="r_bansos" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Bantuan Sosial & Hibah </strong></th>
                                                     <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;"><strong> Nilai IKPA </strong></th>
                                                     <th scope="col" class="sort" style="text-align:center;font-size:12px;"><strong> Action </strong></th>
                                                 </tr>
@@ -253,6 +261,13 @@
                                                     <td style="text-align:center">
                                                         @php $id = Illuminate\Support\Facades\Crypt::encrypt($pys->id_py) @endphp
                                                         <a href="penyerapan/edit/{{ $id }}" class="details btn btn-info btn-md">Edit</a>
+                                                        <form method="POST" action="{{ route('penyerapan.delete', $pys->id_py) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="destroy" value="DELETE">
+                                                            <button style="margin-top: 10px" type="submit" class="btn btn-xs btn-danger show_confirm">
+                                                                Hapus
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -294,6 +309,26 @@
 
                 <script>
                     document.getElementById('mygraph').style.height = my_height + "px";
+                </script>
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+                <script type="text/javascript">
+                    $('.show_confirm').click(function(event) {
+                        var form = $(this).closest("form");
+                        var name = $(this).data("name");
+                        event.preventDefault();
+                        swal({
+                                title: `Apakah Anda yakin akan menghapus?`,
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    form.submit();
+                                }
+                            });
+                    });
                 </script>
 </body>
 

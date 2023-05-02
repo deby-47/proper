@@ -48,5 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/penyerapan/tambah', ['as' => 'penyerapan.store', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@store']);
 	Route::get('/penyerapan/edit/{id}', ['as' => 'penyerapan.edit', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@edit']);
 	Route::post('/penyerapan/edit/{id}', ['as' => 'penyerapan.update', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@update']);
+	Route::post('/penyerapan/hapus/{id}', ['as' => 'penyerapan.delete', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@delete']);
+	Route::get('/penyerapan/cari', ['as' => 'penyerapan.search', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@search']);
 });
 

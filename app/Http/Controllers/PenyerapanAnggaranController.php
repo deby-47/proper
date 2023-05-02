@@ -6,6 +6,7 @@ use App\Models\PenyerapanAnggaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -131,5 +132,30 @@ class PenyerapanAnggaranController extends Controller
         ]);
 
         return redirect(Session::get('py_url'))->with('success', 'Data berhasi diubah!');
+    }
+
+    public function delete($id)
+    {
+        DB::table('tab_penyerapan')->where('id_py', $id)->update([
+            'status' => 0
+        ]);
+
+        return redirect(Session::get('py_url'))->with('info', 'Data berhasi dihapus!');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        Session::put('pg_url', request()->fullUrl());
+
+        $pys = DB::table('tab_penyerapan')
+            ->join('tab_opd', 'tab_opd.id', '=', 'tab_penyerapan.id_opd')
+            ->where('nama', 'LIKE', '%' . $search . '%')
+            ->where('tab_penyerapan.status', '=', 1)
+            ->paginate(10);
+
+        return view('layouts.penyerapan.index', [
+            'py' => $pys
+        ]);
     }
 }
