@@ -119,7 +119,7 @@
                                         <h3 class="text-white mb-0">Daftar Organisasi Perangkat Daerah</h3>
                                     </div>
                                     <div class="table-responsive">
-                                        <form action="/opd/search" method="GET">
+                                        <form action="/opd/cari" method="GET">
                                             <div class="col-auto mb-3">
                                                 <div class="input-group-prepend">
                                                     <span>

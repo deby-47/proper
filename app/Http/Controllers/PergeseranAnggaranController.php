@@ -130,4 +130,22 @@ class PergeseranAnggaranController extends Controller
 
         return redirect(Session::get('details_url'))->with('info', 'Data berhasi dihapus!');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        Session::put('pg_url', request()->fullUrl());
+        
+        $pgs = DB::table('tab_pergeseran')
+            ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
+            ->select('tab_pergeseran.id_opd', 'tab_opd.nama', DB::raw('count(id_opd) as opd'))
+            ->groupBy('tab_opd.nama', 'tab_pergeseran.id_opd')
+            ->where('nama', 'LIKE', '%' . $search . '%')
+            ->where('tab_pergeseran.status', 1)
+            ->paginate(10);
+
+        return view('layouts.pergeseran.index', [
+            'pg' => $pgs
+        ]);
+    }
 }

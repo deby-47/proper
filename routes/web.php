@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/opd', ['as' => 'opd.index', 'uses' => 'App\Http\Controllers\OpdController@index']);
 	Route::post('/opd/hapus/{id}', 'App\Http\Controllers\OpdController@destroy')->name('hapus');
-	Route::get('/opd/search', ['as' => 'opd.search', 'uses' => 'App\Http\Controllers\OpdController@search']);
+	Route::get('/opd/cari', ['as' => 'opd.search', 'uses' => 'App\Http\Controllers\OpdController@search']);
 
 	Route::get('/pergeseran', ['as' => 'pergeseran.index', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@index']);
 	Route::get('/pergeseran/tambah', ['as' => 'pergeseran.create', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@create']);
@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/pergeseran/edit/{id}', ['as' => 'pergeseran.edit', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@edit']);
 	Route::post('/pergeseran/edit/{id}', ['as' => 'pergeseran.update', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@update']);
 	Route::post('/pergeseran/hapus/{id}', ['as' => 'pergeseran.delete', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@delete']);
+	Route::get('/pergeseran/cari', ['as' => 'pergeseran.search', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@search']);
 
 	Route::get('/penyerapan', ['as' => 'penyerapan.index', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@index']);
 	Route::get('/penyerapan/tambah', ['as' => 'penyerapan.create', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@create']);
