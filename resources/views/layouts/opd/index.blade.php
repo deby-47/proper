@@ -156,8 +156,7 @@
                                                     </td>
                                                     <td style="text-align:center">
                                                         @php $id = Illuminate\Support\Facades\Crypt::encrypt($opds->id) @endphp
-                                                        <a href="/opd/{{ $id }}/edit" class="edit btn btn-info btn-md">Edit</a>
-                                                        <a href="javascript:void(0)" class="edit btn btn-danger btn-md">Hapus</a>
+                                                        <a href="/opd/details/{{ $id }}" class="edit btn btn-info btn-md">Details</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

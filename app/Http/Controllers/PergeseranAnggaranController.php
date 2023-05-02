@@ -135,7 +135,7 @@ class PergeseranAnggaranController extends Controller
     {
         $search = $request->search;
         Session::put('pg_url', request()->fullUrl());
-        
+
         $pgs = DB::table('tab_pergeseran')
             ->join('tab_opd', 'tab_pergeseran.id_opd', '=', 'tab_opd.id')
             ->select('tab_pergeseran.id_opd', 'tab_opd.nama', DB::raw('count(id_opd) as opd'))

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -33,6 +34,19 @@ class OpdController extends Controller
         
         return view('layouts.opd.index', [
             'opd' => $opds
+        ]);
+    }
+
+    public function details(Request $request)
+    {
+        $id = Crypt::decrypt($request->id);
+        $title = DB::table('tab_opd')
+            ->where('id',  $id)
+            ->pluck('nama')
+            ->first();
+
+        return view('layouts.opd.details', [
+            'title' => $title
         ]);
     }
 }

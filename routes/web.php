@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
 	Route::get('/opd', ['as' => 'opd.index', 'uses' => 'App\Http\Controllers\OpdController@index']);
-	Route::post('/opd/hapus/{id}', 'App\Http\Controllers\OpdController@destroy')->name('hapus');
+	Route::get('/opd/details/{id}', ['as' => 'opd.details', 'uses' => 'App\Http\Controllers\OpdController@details']);
 	Route::get('/opd/cari', ['as' => 'opd.search', 'uses' => 'App\Http\Controllers\OpdController@search']);
 
 	Route::get('/pergeseran', ['as' => 'pergeseran.index', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@index']);
