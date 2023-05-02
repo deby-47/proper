@@ -42,12 +42,6 @@
                     <!-- Search form -->
                     <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
                         <div class="form-group mb-0">
-                            <div class="input-group input-group-alternative input-group-merge">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                </div>
-                                <input class="form-control" placeholder="Search" type="text">
-                            </div>
                         </div>
                         <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
                             <span aria-hidden="true">×</span>
@@ -125,6 +119,18 @@
                                         <h3 class="text-white mb-0">Daftar Organisasi Perangkat Daerah</h3>
                                     </div>
                                     <div class="table-responsive">
+                                        <form action="/opd/search" method="GET">
+                                            <div class="col-auto mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span>
+                                                        <div class="col-auto">
+                                                            <input type="text" name="search" class="form-control" id="search" placeholder="Search..." value="{{ old('search') }}">
+                                                        </div>
+                                                    </span>
+                                                    <button id="search" type="submit" class="btn btn-primary">Cari</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                         <table class="table align-items-center table-dark table-flush">
                                             <thead class="thead-dark">
                                                 <tr>
