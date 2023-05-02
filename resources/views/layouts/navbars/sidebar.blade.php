@@ -102,7 +102,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">
+                                <a class="nav-link" href="{{ route('penyerapan.index') }}">
                                     {{ __('Penyerapan Anggaran') }}
                                 </a>
                             </li>

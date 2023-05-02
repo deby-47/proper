@@ -43,5 +43,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/pergeseran/edit/{id}', ['as' => 'pergeseran.edit', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@edit']);
 	Route::post('/pergeseran/edit/{id}', ['as' => 'pergeseran.update', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@update']);
 	Route::post('/pergeseran/hapus/{id}', ['as' => 'pergeseran.delete', 'uses' => 'App\Http\Controllers\PergeseranAnggaranController@delete']);
+
+	Route::get('/penyerapan', ['as' => 'penyerapan.index', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@index']);
+	Route::get('/penyerapan/tambah', ['as' => 'penyerapan.create', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@create']);
+	Route::post('/penyerapan/tambah', ['as' => 'penyerapan.store', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@store']);
+	Route::get('/penyerapan/edit/{id}', ['as' => 'penyerapan.edit', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@edit']);
+	Route::post('/penyerapan/edit/{id}', ['as' => 'penyerapan.update', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@update']);
 });
 
