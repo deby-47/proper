@@ -140,13 +140,13 @@ class PenyerapanAnggaranController extends Controller
             'status' => 0
         ]);
 
-        return redirect(Session::get('py_url'))->with('info', 'Data berhasi dihapus!');
+        return redirect(Session::get('py_url'))->with('warning', 'Data berhasi dihapus!');
     }
 
     public function search(Request $request)
     {
         $search = $request->search;
-        Session::put('pg_url', request()->fullUrl());
+        Session::put('py_url', request()->fullUrl());
 
         $pys = DB::table('tab_penyerapan')
             ->join('tab_opd', 'tab_opd.id', '=', 'tab_penyerapan.id_opd')
