@@ -167,6 +167,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
+                                                @php $ikpa_penyerapan = []; @endphp
                                                 @foreach ($py as $key => $pys)
                                                 <tr>
                                                     <th scope="row">
@@ -254,6 +255,8 @@
                                                         @else
                                                         @php $nilai_ikpa = number_format($ikpa, 2); @endphp
                                                         @endif
+
+                                                        @php $ikpa_penyerapan[$pys->id_opd] = $nilai_ikpa; @endphp
                                                         <strong>
                                                             {{ number_format($nilai_ikpa, 2) }}
                                                         </strong>
@@ -271,6 +274,7 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
+                                                @php Session::put('penyerapan', $ikpa_penyerapan); @endphp
                                             </tbody>
                                         </table>
                                     </div>

@@ -157,6 +157,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
+                                                @php $ikpa_dispensasi = []; @endphp
                                                 @foreach ($dsp as $key => $dsps)
                                                 <tr>
                                                     <th scope="row">
@@ -190,9 +191,9 @@
 
                                                         @php $nilai = 0; @endphp
 
-                                                        @php $nilai_ikpa == 0 ? $nilai = 100 : ($nilai_ikpa >= 0.01 && $nilai_ikpa <= 0.099 ? $nilai=95 : ($nilai_ikpa>= 0.1 && $nilai_ikpa <= 0.99 ? $nilai=90 : ($nilai_ikpa>= 1 && $nilai_ikpa <= 4.99 ? $nilai=85 : $nilai=80))) @endphp <strong>
-                                                                    {{ $nilai }}
-                                                                    </strong>
+                                                        @php $nilai_ikpa == 0 ? $nilai = 100 : ($nilai_ikpa >= 0.01 && $nilai_ikpa <= 0.099 ? $nilai=95 : ($nilai_ikpa>= 0.1 && $nilai_ikpa <= 0.99 ? $nilai=90 : ($nilai_ikpa>= 1 && $nilai_ikpa <= 4.99 ? $nilai=85 : $nilai=80))) @endphp <strong> {{ $nilai }} </strong>
+
+                                                        @php $ikpa_dispensasi[$dsps->id_opd] = $nilai; @endphp
                                                     </td>
                                                     <td style="text-align:center">
                                                         @php $id = Illuminate\Support\Facades\Crypt::encrypt($dsps->id_ds) @endphp
@@ -207,6 +208,7 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
+                                                @php Session::put('dispensasi', $ikpa_dispensasi); @endphp
                                             </tbody>
                                         </table>
                                     </div>

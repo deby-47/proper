@@ -152,6 +152,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
+                                                @php $ikpa_pergeseran = []; @endphp
                                                 @foreach ($pg as $key => $pgs)
                                                 <tr>
                                                     <th scope="row">
@@ -173,14 +174,17 @@
                                                     </td>
                                                     <td class="ikpa" style="text-align:center">
                                                         @if($pgs->opd == 0)
-                                                        @php $nilai_ikpa = number_format(100, 2); @endphp
+                                                        @php $nilai_ikpa = 100; @endphp
                                                         @else
-                                                        @php $nilai_ikpa = number_format(1 / $pgs->opd * 100, 2); @endphp
+                                                        @php $nilai_ikpa = 1 / $pgs->opd * 100 @endphp
                                                         @endif
 
+                                                        @php $ikpa_pergeseran[$pgs->id_opd] = number_format($nilai_ikpa, 2); @endphp
+
                                                         <strong>
-                                                            {{ $nilai_ikpa }}
+                                                            {{ number_format($nilai_ikpa, 2) }}
                                                         </strong>
+
                                                     </td>
                                                     <td style="text-align:center">
                                                         @php $id = Illuminate\Support\Facades\Crypt::encrypt($pgs->id_opd) @endphp
@@ -188,6 +192,7 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
+                                                @php Session::put('pergeseran', $ikpa_pergeseran); @endphp
                                             </tbody>
                                         </table>
                                     </div>

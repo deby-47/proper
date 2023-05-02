@@ -39,14 +39,21 @@ class OpdController extends Controller
 
     public function details(Request $request)
     {
+        // dd(Session::get('penyerapan'));die();
         $id = Crypt::decrypt($request->id);
+        $opds = DB::table('tab_opd')
+            ->where('status', '=', 1)
+            ->orderBy('tab_opd.id', 'ASC')
+            ->paginate(5);
         $title = DB::table('tab_opd')
             ->where('id',  $id)
             ->pluck('nama')
             ->first();
 
         return view('layouts.opd.details', [
-            'title' => $title
+            'title' => $title,
+            'id' => $id,
+            'opd' => $opds,
         ]);
     }
 }

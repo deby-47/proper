@@ -122,7 +122,7 @@
                                     <h2 class="text-white mb-0">Detail Kinerja Pelaksanaan Anggaran</h2>
                                     <h3 class="text-white mb-0"><strong> {{ $title }} </strong></h3>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -133,19 +133,72 @@
                             <table class="table align-items-center table-dark table-flush">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th scope="col" class="sort" data-sort="no" style="text-align:center;font-size:12px;"><strong> No </strong></th>
-                                        <th scope="col" class="sort" data-sort="pergeseran" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Pergeseran Anggaran </strong></th>
-                                        <th scope="col" class="sort" data-sort="deviasi" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Deviasi Rencana Penarikan Dana </strong></th>
-                                        <th scope="col" class="sort" data-sort="penyerapan" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Penyerapan Anggaran </strong></th>
-                                        <th scope="col" class="sort" data-sort="pengelolaan" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Pengelolaan UP dan TUP </strong></th>
-                                        <th scope="col" class="sort" data-sort="dispensasi" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Dispensasi SPM </strong></th>
-                                        <th scope="col" class="sort" data-sort="total" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Kumulatif </strong></th>
-                                        <th scope="col" class="sort" style="text-align:center;font-size:12px;"><strong> Action </strong></th>
+                                        <th scope="col" class="sort" data-sort="pergeseran" style="text-align:left ;font-size:15px;"> Pergeseran Anggaran </th>
+                                        <td class="pergeseran" style="text-align:center">
+                                            @php $pg = Session::get('pergeseran'); @endphp
+                                            @if(empty($pg[$id]))
+                                            @php $nilai = number_format(0, 2); @endphp
+                                            @else
+                                            @php $nilai = $pg[$id] @endphp
+                                            @endif
+                                            <strong>
+                                                {{ $nilai }}
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="deviasi" style="text-align:left ;font-size:15px;"> Deviasi Rencana Penarikan Dana </th>
+                                        <td class="deviasi" style="text-align:center">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="penyerapan" style="text-align:left ;font-size:15px;"> Penyerapan Anggaran </th>
+                                        <td class="penyerapan" style="text-align:center">
+                                            @php $py = Session::get('penyerapan'); @endphp
+                                            @if(empty($py[$id]))
+                                            @php $nilai = number_format(0, 2); @endphp
+                                            @else
+                                            @php $nilai = $py[$id] @endphp
+                                            @endif
+                                            <strong>
+                                                {{ $nilai }}
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="pengelolaan" style="text-align:left ;font-size:15px;"> Pengelolaan UP dan TUP </th>
+                                        <td class="pengelolaan" style="text-align:center">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="dispensasi" style="text-align:left ;font-size:15px;"> Dispensasi SPM </th>
+                                        <td class="dispensasi" style="text-align:center">
+                                            @php $ds = Session::get('dispensasi'); @endphp
+                                            @if(empty($ds[$id]))
+                                            @php $nilai = number_format(0, 2); @endphp
+                                            @else
+                                            @php $nilai = $ds[$id] @endphp
+                                            @endif
+                                            <strong>
+                                                {{ number_format($nilai, 2) }}
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="output" style="text-align:left ;font-size:15px;"> Capaian Output </th>
+                                        <td class="output" style="text-align:center">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="nilai" style="text-align:left;font-size:15px;"><strong> Nilai IKPA Kumulatif </strong></th>
+                                        <td class="output" style="text-align:center">
+
+                                        </td>
                                     </tr>
                                 </thead>
-                                <tbody class="list">
-                                    
-                                </tbody>
                             </table>
                         </div>
                         <div class="card-footer py-4">
