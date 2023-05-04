@@ -3,7 +3,7 @@
         width: 105px;
         height: 140px;
         margin-top: 20px;
-        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Coat_of_arms_of_North_Kalimantan_%282021_version%29.svg/1200px-Coat_of_arms_of_North_Kalimantan_%282021_version%29.svg.png");
+        background-image: url("{{ asset('assets') }}/img/brand/lgkaltara.png");
         background-size: cover;
         background-repeat: no-repeat;
     }

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-body text-center mb-7">
             <div class="row justify-content-center">
-                <div class="col-lg-5 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <h1 class="text-white">{{ __('SAPPA - PERADI') }}</h1>
                     <h2 class="text-white">{{ __('Sistem Analisi Penilaian Pelaksanaan Anggaran - Perangkat Daerah Berintegritas') }}</h2>
                 </div>
