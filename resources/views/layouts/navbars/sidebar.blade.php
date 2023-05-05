@@ -3,7 +3,7 @@
         width: 105px;
         height: 140px;
         margin-top: 20px;
-        background-image: url("{{ asset('assets') }}/img/brand/lgkaltara.png");
+        background-image: url("{{ asset('assets') }}/img/brand/favicon.png");
         background-size: cover;
         background-repeat: no-repeat;
     }

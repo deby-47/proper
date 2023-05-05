@@ -1,17 +1,12 @@
-<div class="header bg-gradient-primary py-7 py-lg-8">
+<div class="header py-7 py-lg-8">
     <div class="container">
         <div class="header-body text-center mb-7">
             <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-6">
-                    <h1 class="text-white">{{ __('SAPPA - PERADI') }}</h1>
-                    <h2 class="text-white">{{ __('Sistem Analisi Penilaian Pelaksanaan Anggaran - Perangkat Daerah Berintegritas') }}</h2>
+                <div class="col-lg-7 col-md-6">
+                    <h1 style=font-size:50px class="text-black"><strong> {{ __('SAPPA - PERADI') }} </strong></h1>
+                    <h2 style=font-size:25px class="text-black"><strong> {{ __('Sistem Analisis Penilaian Pelaksanaan Anggaran - Perangkat Daerah Berintegritas') }} </strong></h2>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
     </div>
 </div>

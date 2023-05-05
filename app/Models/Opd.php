@@ -10,9 +10,9 @@ class Opd extends Model
 {
     use HasFactory;
 
-    public $table = "tab_opd";
+    public $table = ["tab_opd", "tab_ikpa"];
 
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama', 'id_opd', 'n_pergeseran', 'n_penyerapan', 'n_up', 'n_output'];
 
     public function selectOpd()
     {
@@ -22,5 +22,12 @@ class Opd extends Model
                 ->get();
         
         return $opd;
+    }
+
+    public function selectNilai()
+    {
+        $nilai = DB::table('tab_ikpa')
+                ->select('id_ikpa', 'id_opd', 'n_pergeseran', 'n_penyerapan', 'n_up', 'n_output', 'n_ikpa')
+                ->get();
     }
 }
