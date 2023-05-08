@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NilaiIKPA;
 use App\Models\PenyerapanAnggaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -73,8 +73,36 @@ class PenyerapanAnggaranController extends Controller
         $pys->r_bansos = $request->r_bansos;
         $pys->save();
 
+        $t_pegawai = $pys->p_pegawai * (20 / 100);
+        $t_barjas = $pys->p_barjas * (15 / 100);
+        $t_modal = $pys->p_modal * (10 / 100);
+        $t_bansos = $pys->p_bansos * (25 / 100);
+
+        $t_kumulatif = $t_pegawai + $t_barjas + $t_modal + $t_bansos;
+        $r_kumulatif = $pys->r_pegawai + $pys->r_barjas + $pys->r_modal + $pys->r_bansos;
+        $ikpa = ($r_kumulatif / $t_kumulatif) * 100;
+
+        $ikpa > 100 ? $ikpa = 100 : $ikpa;
+
+        $nilai = new NilaiIKPA;
+        $nilai->id_opd = $request->opd;
+
+        $exist = DB::table('tab_ikpa')->where('id_opd', $request->opd)
+            ->exists();
+
+        if (!$exist) {
+            $nilai->id_opd = $request->opd;
+            $nilai->n_penyerapan = $ikpa;
+            $nilai->save();
+        } else {
+            DB::table('tab_ikpa')->where('id_opd', $request->opd)->update([
+                'n_penyerapan' => $ikpa,
+                'updated_at' => now()
+            ]);
+        }
+
         Alert::success('Sukses!', 'Data berhasil tersimpan');
-        return view('layouts.pergeseran.create');
+        return view('layouts.penyerapan.create');
     }
 
     public function edit(Request $request)
@@ -131,6 +159,27 @@ class PenyerapanAnggaranController extends Controller
             'updated_at' => now()
         ]);
 
+        $id_opd = DB::table('tab_penyerapan')->select('id_opd')->where('id_py', $id)->pluck('id_opd')->first();
+
+        $t_pegawai = $request->p_pegawai * (20 / 100);
+        $t_barjas = $request->p_barjas * (15 / 100);
+        $t_modal = $request->p_modal * (10 / 100);
+        $t_bansos = $request->p_bansos * (25 / 100);
+
+        $t_kumulatif = $t_pegawai + $t_barjas + $t_modal + $t_bansos;
+        $r_kumulatif = $request->r_pegawai + $request->r_barjas + $request->r_modal + $request->r_bansos;
+        $ikpa = ($r_kumulatif / $t_kumulatif) * 100;
+
+        $ikpa > 100 ? $ikpa = 100 : $ikpa;
+
+        $nilai = new NilaiIKPA;
+        $nilai->id_opd = $request->opd;
+
+        DB::table('tab_ikpa')->where('id_opd', $id_opd)->update([
+            'n_penyerapan' => $ikpa,
+            'updated_at' => now()
+        ]);
+
         return redirect(Session::get('py_url'))->with('success', 'Data berhasi diubah!');
     }
 
@@ -138,6 +187,13 @@ class PenyerapanAnggaranController extends Controller
     {
         DB::table('tab_penyerapan')->where('id_py', $id)->update([
             'status' => 0
+        ]);
+
+        $id_opd = DB::table('tab_penyerapan')->select('id_opd')->where('id_py', $id)->pluck('id_opd')->first();
+        
+        DB::table('tab_ikpa')->where('id_opd', $id_opd)->update([
+            'n_penyerapan' => 0,
+            'updated_at' => now()
         ]);
 
         return redirect(Session::get('py_url'))->with('warning', 'Data berhasi dihapus!');

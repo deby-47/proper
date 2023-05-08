@@ -152,7 +152,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
-                                                @php $ikpa_pergeseran = []; @endphp
                                                 @foreach ($pg as $key => $pgs)
                                                 <tr>
                                                     <th scope="row">
@@ -179,8 +178,6 @@
                                                         @php $nilai_ikpa = 1 / $pgs->opd * 100 @endphp
                                                         @endif
 
-                                                        @php $ikpa_pergeseran[$pgs->id_opd] = number_format($nilai_ikpa, 2); @endphp
-
                                                         <strong>
                                                             {{ number_format($nilai_ikpa, 2) }}
                                                         </strong>
@@ -192,7 +189,6 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
-                                                @php Session::put('pergeseran', $ikpa_pergeseran); @endphp
                                             </tbody>
                                         </table>
                                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NilaiIKPA;
 use App\Models\PergeseranAnggaran;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -79,6 +80,34 @@ class PergeseranAnggaranController extends Controller
         $pgs->tanggal = $request->tanggal;
         $pgs->save();
 
+        $count = DB::table('tab_pergeseran')
+            ->select(DB::raw('count(id_opd) as total'))
+            ->groupBy('id_opd')
+            ->where('tab_pergeseran.status', 1)
+            ->where('id_opd', $request->opd)
+            ->pluck('total')
+            ->first();
+
+        $ikpa = 0;
+        $count = 0 ? $ikpa = 100 : $ikpa = (1 / $count) * 100;
+
+        $nilai = new NilaiIKPA;
+        $nilai->id_opd = $request->opd;
+
+        $exist = DB::table('tab_ikpa')->where('id_opd', $request->opd)
+            ->exists();
+
+        if (!$exist) {
+            $nilai->id_opd = $request->opd;
+            $nilai->n_pergeseran = $ikpa;
+            $nilai->save();
+        } else {
+            DB::table('tab_ikpa')->where('id_opd', $request->opd)->update([
+                'n_pergeseran' => $ikpa,
+                'updated_at' => now()
+            ]);
+        }
+
         Alert::success('Sukses!', 'Data berhasil tersimpan');
         return view('layouts.pergeseran.create');
     }
@@ -126,6 +155,28 @@ class PergeseranAnggaranController extends Controller
         // PergeseranAnggaran::find($id);
         DB::table('tab_pergeseran')->where('id_pg', $id)->update([
             'status' => 0
+        ]);
+
+        $id_opd = DB::table('tab_pergeseran')->select('id_opd')->where('id_pg', $id)->pluck('id_opd')->first();
+
+        $count = DB::table('tab_pergeseran')
+            ->select(DB::raw('count(id_opd) as total'))
+            ->groupBy('id_opd')
+            ->where('tab_pergeseran.status', 1)
+            ->where('id_opd', $id_opd)
+            ->pluck('total')
+            ->first();
+
+        $ikpa = 0;
+        $count == null ? $ikpa = 100 : $ikpa = (1 / $count) * 100;
+
+        $nilai = new NilaiIKPA;
+        $nilai->id_opd = $id_opd;
+
+        DB::table('tab_ikpa')->where('id_opd', $id_opd)->update([
+            'n_pergeseran' => $ikpa,
+            'updated_at' => now()
+
         ]);
 
         return redirect(Session::get('details_url'))->with('info', 'Data berhasi dihapus!');

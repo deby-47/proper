@@ -124,18 +124,13 @@
 
                         <div class="table-responsive">
                             <table class="table align-items-center table-dark table-flush">
+                                @foreach ($opd as $key => $opds)
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col" class="sort" data-sort="pergeseran" style="text-align:left ;font-size:15px;"> Pergeseran Anggaran </th>
                                         <td class="pergeseran" style="text-align:center">
-                                            @php $pg = Session::get('pergeseran'); @endphp
-                                            @if(empty($pg[$id]))
-                                            @php $nilai = number_format(0, 2); @endphp
-                                            @else
-                                            @php $nilai = $pg[$id] @endphp
-                                            @endif
                                             <strong>
-                                                {{ $nilai }}
+                                                {{ $opds->n_pergeseran }}
                                             </strong>
                                         </td>
                                     </tr>
@@ -148,14 +143,8 @@
                                     <tr>
                                         <th scope="col" class="sort" data-sort="penyerapan" style="text-align:left ;font-size:15px;"> Penyerapan Anggaran </th>
                                         <td class="penyerapan" style="text-align:center">
-                                            @php $py = Session::get('penyerapan'); @endphp
-                                            @if(empty($py[$id]))
-                                            @php $nilai = number_format(0, 2); @endphp
-                                            @else
-                                            @php $nilai = $py[$id] @endphp
-                                            @endif
                                             <strong>
-                                                {{ $nilai }}
+                                                {{ $opds->n_penyerapan }}
                                             </strong>
                                         </td>
                                     </tr>
@@ -163,20 +152,6 @@
                                         <th scope="col" class="sort" data-sort="pengelolaan" style="text-align:left ;font-size:15px;"> Pengelolaan UP dan TUP </th>
                                         <td class="pengelolaan" style="text-align:center">
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="col" class="sort" data-sort="dispensasi" style="text-align:left ;font-size:15px;"> Dispensasi SPM </th>
-                                        <td class="dispensasi" style="text-align:center">
-                                            @php $ds = Session::get('dispensasi'); @endphp
-                                            @if(empty($ds[$id]))
-                                            @php $nilai = number_format(0, 2); @endphp
-                                            @else
-                                            @php $nilai = $ds[$id] @endphp
-                                            @endif
-                                            <strong>
-                                                {{ number_format($nilai, 2) }}
-                                            </strong>
                                         </td>
                                     </tr>
                                     <tr>
@@ -192,6 +167,7 @@
                                         </td>
                                     </tr>
                                 </thead>
+                                @endforeach
                             </table>
                         </div>
                         <div class="card-footer py-4">
