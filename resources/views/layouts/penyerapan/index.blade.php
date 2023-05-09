@@ -261,7 +261,7 @@
                                                     </td>
                                                     <td style="text-align:center">
                                                         @php $id = Illuminate\Support\Facades\Crypt::encrypt($pys->id_py) @endphp
-                                                        <a href="penyerapan/edit/{{ $id }}" class="details btn btn-info btn-md">Edit</a>
+                                                        <a href="{{ url('/penyerapan/edit', [$id]) }}" class="details btn btn-info btn-md">Edit</a>
                                                         <form method="POST" action="{{ route('penyerapan.delete', $pys->id_py) }}">
                                                             @csrf
                                                             <input type="hidden" name="destroy" value="DELETE">

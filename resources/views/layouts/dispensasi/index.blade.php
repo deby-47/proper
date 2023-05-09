@@ -197,7 +197,7 @@
                                                     </td>
                                                     <td style="text-align:center">
                                                         @php $id = Illuminate\Support\Facades\Crypt::encrypt($dsps->id_ds) @endphp
-                                                        <a href="dispensasi-spm/edit/{{ $id }}" class="details btn btn-info btn-md">Edit</a>
+                                                        <a href="{{ url('/dispensasi-spm/edit', [$id]) }}" class="details btn btn-info btn-md">Edit</a>
                                                         <form method="POST" action="{{ route('dispensasi.delete', $dsps->id_ds) }}">
                                                             @csrf
                                                             <input type="hidden" name="destroy" value="DELETE">

@@ -161,7 +161,7 @@
                                         </td>
                                         <td style="text-align:center">
                                             @php $id = Illuminate\Support\Facades\Crypt::encrypt($details->id_pg) @endphp
-                                            <a href="/pergeseran/edit/{{ $id }}" class="edit btn btn-info btn-md">Edit</a>
+                                            <a href="{{ url('/pergeseran/edit', [$id]) }}" class="edit btn btn-info btn-md">Edit</a>
                                             <form onsubmit="return confirm('Apakah Anda yakin akan menghapus?');" method="POST" action="{{ route('pergeseran.delete', $details->id_pg) }}">
                                                 @csrf
                                                 <button style="margin-top: 10px" type="submit" class="btn btn-xs btn-danger">

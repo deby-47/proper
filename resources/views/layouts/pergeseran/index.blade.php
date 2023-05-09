@@ -185,7 +185,7 @@
                                                     </td>
                                                     <td style="text-align:center">
                                                         @php $id = Illuminate\Support\Facades\Crypt::encrypt($pgs->id_opd) @endphp
-                                                        <a href="pergeseran/details/{{ $id }}" class="details btn btn-info btn-md">Detail</a>
+                                                        <a href="{{ url('/pergeseran/details', [$id]) }}" class="details btn btn-info btn-md">Detail</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

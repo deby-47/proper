@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="table-responsive">
                                         <form action="/deviasi/cari" method="GET">
-                                            <div class="col-auto mb-3">
+                                            <div class="col-auto mb-3"> 
                                                 <div class="input-group-prepend">
                                                     <span>
                                                         <div class="col-auto">
@@ -189,7 +189,7 @@
                                                     </td>
                                                     <td style="text-align:center">
                                                         @php $id = Illuminate\Support\Facades\Crypt::encrypt($dvs->id_dv) @endphp
-                                                        <a href="deviasi/edit/{{ $id }}" class="details btn btn-info btn-md">Edit</a>
+                                                        <a href="{{ url('/deviasi/edit', [$id]) }}" class="details btn btn-info btn-md">Edit</a>
                                                         <form method="POST" action="{{ route('deviasi.delete', $dvs->id_dv) }}">
                                                             @csrf
                                                             <input type="hidden" name="destroy" value="DELETE">
