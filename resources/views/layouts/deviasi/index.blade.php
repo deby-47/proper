@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Penyerapan Anggaran</title>
+    <title>Deviasi RPD</title>
     <!-- Favicon -->
     <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
@@ -104,7 +104,7 @@
                             </nav>
                         </div>
                         <div class="col-lg-6 col-5 text-right">
-                            <a href="{{ route('penyerapan.create') }}" class="btn btn-sm btn-neutral">Tambah Data Penyerapan Anggaran</a>
+                            <a href="{{ route('deviasi.create') }}" class="btn btn-sm btn-neutral">Tambah Data Deviasi RPD</a>
                         </div> <br />
                     </div>
                 </div>
@@ -130,10 +130,10 @@
                             <div class="col">
                                 <div class="card bg-default shadow">
                                     <div class="card-header bg-transparent border-0">
-                                        <h3 class="text-white mb-0">Penyerapan Anggaran</h3>
+                                        <h3 class="text-white mb-0">Deviasi Rencana Penarikan Dana</h3>
                                     </div>
                                     <div class="table-responsive">
-                                        <form action="/penyerapan/cari" method="GET">
+                                        <form action="/deviasi/cari" method="GET">
                                             <div class="col-auto mb-3">
                                                 <div class="input-group-prepend">
                                                     <span>
@@ -150,119 +150,47 @@
                                                 <tr>
                                                     <th scope="col" class="sort" data-sort="no" style="text-align:center;font-size:12px;">No</th>
                                                     <th scope="col" class="sort" data-sort="nama" style="text-align:center;font-size:12px;"><strong> Organisasi Perangkat Daerah</strong></th>
-                                                    <th scope="col" class="sort" data-sort="p_pegawai" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Pegawai </strong></th>
-                                                    <th scope="col" class="sort" data-sort="t_pegawai" style="text-align:center;font-size:12px;"><strong> Target Belanja Pegawai </strong></th>
-                                                    <th scope="col" class="sort" data-sort="r_pegawai" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Pegawai </strong></th>
-                                                    <th scope="col" class="sort" data-sort="p_barjas" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Barang & Jasa </strong></th>
-                                                    <th scope="col" class="sort" data-sort="t_barjas" style="text-align:center;font-size:12px;"><strong> Target Belanja Barang & Jasa </strong></th>
-                                                    <th scope="col" class="sort" data-sort="r_barjas" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Barang & Jasa </strong></th>
-                                                    <th scope="col" class="sort" data-sort="p_modal" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Modal </strong></th>
-                                                    <th scope="col" class="sort" data-sort="t_modal" style="text-align:center;font-size:12px;"><strong> Target Belanja Modal </strong></th>
-                                                    <th scope="col" class="sort" data-sort="r_modal" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Modal </strong></th>
-                                                    <th scope="col" class="sort" data-sort="p_bansos" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Bantuan Sosial & Hibah </strong></th>
-                                                    <th scope="col" class="sort" data-sort="t_bansos" style="text-align:center;font-size:12px;"><strong> Target Belanja Bantuan Sosial & Hibah </strong></th>
-                                                    <th scope="col" class="sort" data-sort="r_bansos" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Bantuan Sosial & Hibah </strong></th>
-                                                    <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;"><strong> Nilai IKPA </strong></th>
+                                                    <th scope="col" class="sort" data-sort="n_rpd" style="text-align:center;font-size:12px;"><strong> Total Rencana Penarikan Dana </strong></th>
+                                                    <th scope="col" class="sort" data-sort="n_realisasi" style="text-align:center;font-size:12px;"><strong> Total Realisasi </strong></th>
+                                                    <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Deviasi RPD </strong></th>
                                                     <th scope="col" class="sort" style="text-align:center;font-size:12px;"><strong> Action </strong></th>
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
-                                                @foreach ($py as $key => $pys)
+                                                @foreach ($dv as $key => $dvs)
                                                 <tr>
                                                     <th scope="row">
                                                         <div class="media align-items-center">
                                                             <div class="media-body" style="text-align:center">
-                                                                <span class="name mb-0 text-sm">{{ ($py->currentpage()-1) * $py->perpage() + $key + 1 }}</span>
+                                                                <span class="name mb-0 text-sm">{{ ($dv->currentpage()-1) * $dv->perpage() + $key + 1 }}</span>
                                                             </div>
                                                         </div>
                                                     </th>
                                                     <td class="nama" style="text-align:center">
                                                         <strong>
-                                                            {{ $pys->nama }}
+                                                            {{ $dvs->nama }}
                                                         </strong>
                                                     </td>
-                                                    <td class="p_pegawai" style="text-align:center">
+                                                    <td class="jumlah_spm" style="text-align:center">
                                                         <strong>
-                                                            {{ "Rp" . number_format($pys->p_pegawai, 2, ',','.') }}
+                                                            {{ $dvs->n_rpd }}
                                                         </strong>
                                                     </td>
-                                                    <td class="t_pegawai" style="text-align:center">
-                                                        @php $t_pegawai = $pys->p_pegawai * (20/100); @endphp
+                                                    <td class="jumlah_dispensasi" style="text-align:center">
                                                         <strong>
-                                                            {{ "Rp" . number_format($t_pegawai, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="r_pegawai" style="text-align:center">
-                                                        <strong>
-                                                            {{ "Rp" . number_format($pys->r_pegawai, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="p_barjas" style="text-align:center">
-                                                        <strong>
-                                                            {{ "Rp" . number_format($pys->p_barjas, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="t_barjas" style="text-align:center">
-                                                        @php $t_barjas = $pys->p_barjas * (15/100); @endphp
-                                                        <strong>
-                                                            {{ "Rp" . number_format($t_barjas, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="r_barjas" style="text-align:center">
-                                                        <strong>
-                                                            {{ "Rp" . number_format($pys->r_barjas, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="p_modal" style="text-align:center">
-                                                        <strong>
-                                                            {{ "Rp" . number_format($pys->p_modal, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="t_modal" style="text-align:center">
-                                                        @php $t_modal = $pys->p_modal * (10/100); @endphp
-                                                        <strong>
-                                                            {{ "Rp" . number_format($t_modal, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="r_modal" style="text-align:center">
-                                                        <strong>
-                                                            {{ "Rp" . number_format($pys->r_modal, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="p_bansos" style="text-align:center">
-                                                        <strong>
-                                                            {{ "Rp" . number_format($pys->p_bansos, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="t_bansos" style="text-align:center">
-                                                        @php $t_bansos = $pys->p_bansos * (25/100); @endphp
-                                                        <strong>
-                                                            {{ "Rp" . number_format($t_bansos, 2, ',','.') }}
-                                                        </strong>
-                                                    </td>
-                                                    <td class="r_bansos" style="text-align:center">
-                                                        <strong>
-                                                            {{ "Rp" . number_format($pys->r_bansos, 2, ',','.') }}
+                                                            {{ $dvs->n_realisasi }}
                                                         </strong>
                                                     </td>
                                                     <td class="ikpa" style="text-align:center">
-                                                        @php $t_kumulatif = $t_pegawai + $t_barjas + $t_modal + $t_bansos; @endphp
-                                                        @php $r_kumulatif = $pys->r_pegawai + $pys->r_barjas + $pys->r_modal + $pys->r_bansos; @endphp
-                                                        @php $ikpa = ($r_kumulatif / $t_kumulatif) * 100; @endphp
-                                                        @if($ikpa > 100)
-                                                        @php $nilai_ikpa = number_format(100, 2); @endphp
-                                                        @else
-                                                        @php $nilai_ikpa = number_format($ikpa, 2); @endphp
-                                                        @endif
-
+                                                        @php $nilai_ikpa = abs(($dvs->n_realisasi - $dvs->n_rpd) / $dvs->n_rpd); @endphp
                                                         <strong>
-                                                            {{ number_format($nilai_ikpa, 2) }}
+                                                            {{ number_format(100 - ($nilai_ikpa * 100), 2) }}
                                                         </strong>
                                                     </td>
                                                     <td style="text-align:center">
-                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($pys->id_py) @endphp
-                                                        <a href="penyerapan/edit/{{ $id }}" class="details btn btn-info btn-md">Edit</a>
-                                                        <form method="POST" action="{{ route('penyerapan.delete', $pys->id_py) }}">
+                                                        @php $id = Illuminate\Support\Facades\Crypt::encrypt($dvs->id_dv) @endphp
+                                                        <a href="deviasi/edit/{{ $id }}" class="details btn btn-info btn-md">Edit</a>
+                                                        <form method="POST" action="{{ route('deviasi.delete', $dvs->id_dv) }}">
                                                             @csrf
                                                             <input type="hidden" name="destroy" value="DELETE">
                                                             <button style="margin-top: 10px" type="submit" class="btn btn-xs btn-danger show_confirm">
@@ -279,7 +207,7 @@
                                     <div class="card-footer py-4">
                                         <nav aria-label="...">
                                             <ul class="pagination justify-content-end mb-0">
-                                                <h3 class="mb-0">{{ $py->withQueryString()->links() }}</h3>
+                                                <h3 class="mb-0">{{ $dv->withQueryString()->links() }}</h3>
                                             </ul>
                                         </nav>
                                     </div>

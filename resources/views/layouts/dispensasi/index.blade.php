@@ -152,7 +152,7 @@
                                                     <th scope="col" class="sort" data-sort="nama" style="text-align:center;font-size:12px;"><strong> Organisasi Perangkat Daerah</strong></th>
                                                     <th scope="col" class="sort" data-sort="jumlah_spm" style="text-align:center;font-size:12px;"><strong> Total SPM </strong></th>
                                                     <th scope="col" class="sort" data-sort="jumlah_dispensasi" style="text-align:center;font-size:12px;"><strong> Total SPM Dispensasi </strong></th>
-                                                    <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Pergeseran Anggaran </strong></th>
+                                                    <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Dispensasi SPM </strong></th>
                                                     <th scope="col" class="sort" style="text-align:center;font-size:12px;"><strong> Action </strong></th>
                                                 </tr>
                                             </thead>

@@ -33,7 +33,7 @@ class DispensasiController extends Controller
 
     public function store(Request $request)
     {
-        $pgs = new DispensasiSPM();
+        $pgs = new DispensasiSPM;
         $pgs->id_opd = $request->opd;
         $pgs->jumlah_spm = $request->jumlah_spm;
         $pgs->jumlah_dispensasi = $request->jumlah_dispensasi;

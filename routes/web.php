@@ -52,6 +52,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/penyerapan/hapus/{id}', ['as' => 'penyerapan.delete', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@delete']);
 	Route::get('/penyerapan/cari', ['as' => 'penyerapan.search', 'uses' => 'App\Http\Controllers\PenyerapanAnggaranController@search']);
 
+	Route::get('/deviasi', ['as' => 'deviasi.index', 'uses' => 'App\Http\Controllers\DeviasiController@index']);
+	Route::get('/deviasi/tambah', ['as' => 'deviasi.create', 'uses' => 'App\Http\Controllers\DeviasiController@create']);
+	Route::post('/deviasi/tambah', ['as' => 'deviasi.store', 'uses' => 'App\Http\Controllers\DeviasiController@store']);
+	Route::get('/deviasi/edit/{id}', ['as' => 'deviasi.edit', 'uses' => 'App\Http\Controllers\DeviasiController@edit']);
+	Route::post('/deviasi/edit/{id}', ['as' => 'deviasi.update', 'uses' => 'App\Http\Controllers\DeviasiController@update']);
+	Route::post('/deviasi/hapus/{id}', ['as' => 'deviasi.delete', 'uses' => 'App\Http\Controllers\DeviasiController@delete']);
+	Route::get('/deviasi/cari', ['as' => 'deviasi.search', 'uses' => 'App\Http\Controllers\DeviasiController@search']);
+
 	Route::get('/dispensasi-spm', ['as' => 'dispensasi.index', 'uses' => 'App\Http\Controllers\DispensasiController@index']);
 	Route::get('/dispensasi-spm/cari', ['as' => 'dispensasi.search', 'uses' => 'App\Http\Controllers\DispensasiController@search']);
 	Route::get('/dispensasi-spm/tambah', ['as' => 'dispensasi.create', 'uses' => 'App\Http\Controllers\DispensasiController@create']);
