@@ -173,12 +173,12 @@
                                                     </td>
                                                     <td class="jumlah_spm" style="text-align:center">
                                                         <strong>
-                                                            {{ $dvs->n_rpd }}
+                                                            {{ "Rp" . number_format($dvs->n_rpd, 2, ',','.') }}
                                                         </strong>
                                                     </td>
                                                     <td class="jumlah_dispensasi" style="text-align:center">
                                                         <strong>
-                                                            {{ $dvs->n_realisasi }}
+                                                        {{ "Rp" . number_format($dvs->n_realisasi, 2, ',','.') }}
                                                         </strong>
                                                     </td>
                                                     <td class="ikpa" style="text-align:center">
