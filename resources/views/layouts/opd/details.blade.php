@@ -114,8 +114,10 @@
                                 <div class="col-8">
                                     <h2 class="text-white mb-0">Detail Kinerja Pelaksanaan Anggaran</h2>
                                     <h3 class="text-white mb-0"><strong> {{ $title }} </strong></h3>
+                                    @php $n_ikpa = DB::table('tab_ikpa')->where('id_opd', $id)->pluck('n_ikpa')->first();@endphp
+                                    @php $n_ikpa < 70 ? $kategori = "KURANG" : ($n_ikpa >= 70 && $n_ikpa <= 89 ? $kategori = "CUKUP" : ($n_ikpa >= 89 && $n_ikpa < 95 ? $kategori = "BAIK" : $kategori = "SANGAT BAIK")) @endphp
+                                    <h2 class="text-white mb-0"> <br/> Kategori Nilai IKPA: <strong> {{ $kategori }}</strong></h3>
                                 </div>
-
                             </div>
                         </div>
 
@@ -130,7 +132,7 @@
                                         <th scope="col" class="sort" data-sort="pergeseran" style="text-align:left ;font-size:15px;"> Pergeseran Anggaran </th>
                                         <td class="pergeseran" style="text-align:center">
                                             <strong>
-                                                {{ $opds->n_pergeseran }}
+                                                {{ number_format($opds->n_pergeseran, 2) }}
                                             </strong>
                                         </td>
                                     </tr>
@@ -138,7 +140,7 @@
                                         <th scope="col" class="sort" data-sort="deviasi" style="text-align:left ;font-size:15px;"> Deviasi Rencana Penarikan Dana </th>
                                         <td class="deviasi" style="text-align:center">
                                             <strong>
-                                                {{ $opds->n_deviasi }}
+                                                {{ number_format($opds->n_deviasi, 2) }}
                                             </strong>
                                         </td>
                                     </tr>
@@ -146,7 +148,7 @@
                                         <th scope="col" class="sort" data-sort="penyerapan" style="text-align:left ;font-size:15px;"> Penyerapan Anggaran </th>
                                         <td class="penyerapan" style="text-align:center">
                                             <strong>
-                                                {{ $opds->n_penyerapan }}
+                                                {{ number_format($opds->n_penyerapan, 2) }}
                                             </strong>
                                         </td>
                                     </tr>
@@ -154,7 +156,7 @@
                                         <th scope="col" class="sort" data-sort="pengelolaan" style="text-align:left ;font-size:15px;"> Pengelolaan UP dan TUP </th>
                                         <td class="pengelolaan" style="text-align:center">
                                             <strong>
-                                                {{ $opds->n_up }}
+                                                {{ number_format($opds->n_up, 2) }}
                                             </strong>
                                         </td>
                                     </tr>
@@ -162,7 +164,7 @@
                                         <th scope="col" class="sort" data-sort="dispensasi" style="text-align:left ;font-size:15px;"> Dispensasi SPM </th>
                                         <td class="dispensasi" style="text-align:center">
                                             <strong>
-                                                {{ $opds->n_dispensasi }}
+                                                {{ number_format($opds->n_dispensasi, 2) }}
                                             </strong>
                                         </td>
                                     </tr>
@@ -170,7 +172,7 @@
                                         <th scope="col" class="sort" data-sort="output" style="text-align:left ;font-size:15px;"> Capaian Output </th>
                                         <td class="output" style="text-align:center">
                                             <strong>
-                                                {{ $opds->n_output }}
+                                                {{ number_format($opds->n_output, 2) }}
                                             </strong>
                                         </td>
                                     </tr>

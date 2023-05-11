@@ -136,6 +136,7 @@
                                                 <tr>
                                                     <th scope="col" class="sort" data-sort="no" style="text-align:center;font-size:12px;">No</th>
                                                     <th scope="col" class="sort" data-sort="nama" style="text-align:center;font-size:12px;"><strong> Organisasi Perangkat Daerah</strong></th>
+                                                    <th scope="col" class="sort" data-sort="n_ikpa" style="text-align:center;font-size:12px;"><strong> Nilai IKPA </strong></th>
                                                     <th scope="col" class="sort" style="text-align:center;font-size:12px;">Action</th>
                                                 </tr>
                                             </thead>
@@ -152,6 +153,11 @@
                                                     <td class="nama" style="text-align:center">
                                                         <strong>
                                                             {{ $opds->nama }}
+                                                        </strong>
+                                                    </td>
+                                                    <td class="n_ikpa" style="text-align:center">
+                                                        <strong>
+                                                            {{ number_format($opds->n_ikpa, 2) }}
                                                         </strong>
                                                     </td>
                                                     <td style="text-align:center">
