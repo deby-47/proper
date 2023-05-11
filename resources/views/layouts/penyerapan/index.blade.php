@@ -159,9 +159,15 @@
                                                     <th scope="col" class="sort" data-sort="p_modal" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Modal </strong></th>
                                                     <th scope="col" class="sort" data-sort="t_modal" style="text-align:center;font-size:12px;"><strong> Target Belanja Modal </strong></th>
                                                     <th scope="col" class="sort" data-sort="r_modal" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Modal </strong></th>
-                                                    <th scope="col" class="sort" data-sort="p_bansos" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Bantuan Sosial & Hibah </strong></th>
-                                                    <th scope="col" class="sort" data-sort="t_bansos" style="text-align:center;font-size:12px;"><strong> Target Belanja Bantuan Sosial & Hibah </strong></th>
-                                                    <th scope="col" class="sort" data-sort="r_bansos" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Bantuan Sosial & Hibah </strong></th>
+                                                    <th scope="col" class="sort" data-sort="p_bansos" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Bantuan Sosial </strong></th>
+                                                    <th scope="col" class="sort" data-sort="t_bansos" style="text-align:center;font-size:12px;"><strong> Target Belanja Bantuan Sosial </strong></th>
+                                                    <th scope="col" class="sort" data-sort="r_bansos" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Bantuan Sosial </strong></th>
+                                                    <th scope="col" class="sort" data-sort="p_subsidi" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Subsidi </strong></th>
+                                                    <th scope="col" class="sort" data-sort="t_subsidi" style="text-align:center;font-size:12px;"><strong> Target Belanja Subsidi </strong></th>
+                                                    <th scope="col" class="sort" data-sort="r_subsidi" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Subsidi </strong></th>
+                                                    <th scope="col" class="sort" data-sort="p_hibah" style="text-align:center;font-size:12px;"><strong> Pagu Belanja Hibah </strong></th>
+                                                    <th scope="col" class="sort" data-sort="t_hibah" style="text-align:center;font-size:12px;"><strong> Target Belanja Hibah </strong></th>
+                                                    <th scope="col" class="sort" data-sort="r_hibah" style="text-align:center;font-size:12px;"><strong> Penyerapan Belanja Hibah </strong></th>
                                                     <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;"><strong> Nilai IKPA </strong></th>
                                                     <th scope="col" class="sort" style="text-align:center;font-size:12px;"><strong> Action </strong></th>
                                                 </tr>
@@ -245,9 +251,41 @@
                                                             {{ "Rp" . number_format($pys->r_bansos, 2, ',','.') }}
                                                         </strong>
                                                     </td>
+                                                    <td class="p_subsidi" style="text-align:center">
+                                                        <strong>
+                                                            {{ "Rp" . number_format($pys->p_subsidi, 2, ',','.') }}
+                                                        </strong>
+                                                    </td>
+                                                    <td class="t_subsidi" style="text-align:center">
+                                                        @php $t_subsidi = $pys->p_subsidi * (25/100); @endphp
+                                                        <strong>
+                                                            {{ "Rp" . number_format($t_subsidi, 2, ',','.') }}
+                                                        </strong>
+                                                    </td>
+                                                    <td class="r_subsidi" style="text-align:center">
+                                                        <strong>
+                                                            {{ "Rp" . number_format($pys->r_subsidi, 2, ',','.') }}
+                                                        </strong>
+                                                    </td>
+                                                    <td class="p_hibah" style="text-align:center">
+                                                        <strong>
+                                                            {{ "Rp" . number_format($pys->p_hibah, 2, ',','.') }}
+                                                        </strong>
+                                                    </td>
+                                                    <td class="t_hibah" style="text-align:center">
+                                                        @php $t_hibah = $pys->p_hibah * (25/100); @endphp
+                                                        <strong>
+                                                            {{ "Rp" . number_format($t_hibah, 2, ',','.') }}
+                                                        </strong>
+                                                    </td>
+                                                    <td class="r_hibah" style="text-align:center">
+                                                        <strong>
+                                                            {{ "Rp" . number_format($pys->r_hibah, 2, ',','.') }}
+                                                        </strong>
+                                                    </td>
                                                     <td class="ikpa" style="text-align:center">
-                                                        @php $t_kumulatif = $t_pegawai + $t_barjas + $t_modal + $t_bansos; @endphp
-                                                        @php $r_kumulatif = $pys->r_pegawai + $pys->r_barjas + $pys->r_modal + $pys->r_bansos; @endphp
+                                                        @php $t_kumulatif = $t_pegawai + $t_barjas + $t_modal + $t_bansos + $t_subsidi + $t_hibah; @endphp
+                                                        @php $r_kumulatif = $pys->r_pegawai + $pys->r_barjas + $pys->r_modal + $pys->r_bansos + $pys->r_subsidi + $pys->r_hibah; @endphp
                                                         @php $ikpa = ($r_kumulatif / $t_kumulatif) * 100; @endphp
                                                         @if($ikpa > 100)
                                                         @php $nilai_ikpa = number_format(100, 2); @endphp

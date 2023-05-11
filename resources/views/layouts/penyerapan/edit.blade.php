@@ -53,8 +53,16 @@
                             <input value="{{ $pys->p_modal }}" id="p_modal" type="text" class="form-control" name="p_modal" required>
                         </div>
                         <div class="form-group">
-                            <label for="p_bansos">Pagu Belanja Bantuan Sosial & Hibah</label>
+                            <label for="p_bansos">Pagu Belanja Bantuan Sosial</label>
                             <input value="{{ $pys->p_bansos }}" id="p_bansos" type="text" class="form-control" name="p_bansos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="p_subsidi">Pagu Belanja Subsidi</label>
+                            <input value="{{ $pys->p_subsidi }}" id="p_subsidi" type="text" class="form-control" name="p_subsidi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="p_hibah">Pagu Belanja Hibah</label>
+                            <input value="{{ $pys->p_hibah }}" id="p_hibah" type="text" class="form-control" name="p_hibah" required>
                         </div>
                         <div class="form-group">
                             <label for="r_pegawai">Realisasi Belanja Pegawai</label>
@@ -69,8 +77,16 @@
                             <input value="{{ $pys->r_modal }}" id="r_modal" type="text" class="form-control" name="r_modal" required>
                         </div>
                         <div class="form-group">
-                            <label for="r_bansos">Realisasi Belanja Bantuan Sosial & Hibah</label>
+                            <label for="r_bansos">Realisasi Belanja Bantuan Sosial</label>
                             <input value="{{ $pys->r_bansos }}" id="r_bansos" type="text" class="form-control" name="r_bansos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="r_subsidi">Realisasi Belanja Subsidi</label>
+                            <input value="{{ $pys->r_subsidi }}" id="r_subsidi" type="text" class="form-control" name="r_subsidi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="r_hibah">Realisasi Belanja Hibah</label>
+                            <input value="{{ $pys->r_hibah }}" id="r_hibah" type="text" class="form-control" name="r_hibah" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>

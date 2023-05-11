@@ -13,12 +13,14 @@ class PenyerapanAnggaran extends Model
     public $table = "tab_penyerapan";
 
     protected $fillable = ['id_opd', 'p_pegawai', 'r_pegawai', 'p_barjas', 'r_barjas', 
-                        'p_modal', 'r_modal', 'p_bansos', 'r_bansos'];
+                        'p_modal', 'r_modal', 'p_bansos', 'r_bansos', 'p_subsidi', 'r_subsidi',
+                        'p_hibah', 'r_hibah'];
 
     public function selectPenyerapan()
     {
         $pys = DB::table('tab_penyerapan')
-                ->select('id_py', 'id_opd', 'p_pegawai', 'r_pegawai', 'p_barjas', 'r_barjas', 'p_modal', 'r_modal', 'p_bansos', 'r_bansos')
+                ->select('id_py', 'id_opd', 'p_pegawai', 'r_pegawai', 'p_barjas', 'r_barjas',
+                 'p_modal', 'r_modal', 'p_bansos', 'r_bansos', 'p_subsidi', 'r_subsidi', 'p_hibah', 'r_hibah')
                 ->where('status', '=', 1)
                 ->get();
         

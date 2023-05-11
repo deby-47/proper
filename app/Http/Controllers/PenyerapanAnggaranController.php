@@ -36,14 +36,16 @@ class PenyerapanAnggaranController extends Controller
     {
         $rules = [
             'opd' => 'required|numeric',
-            'p_pegawai' => 'required',
-            'p_barjas' => 'required',
-            'p_modal' => 'required',
-            'p_bansos' => 'required',
-            'r_pegawai' => 'required',
-            'r_barjas' => 'required',
-            'r_modal' => 'required',
-            'r_bansos' => 'required',
+            'p_pegawai' => 'required|numeric',
+            'p_barjas' => 'required|numeric',
+            'p_modal' => 'required|numeric',
+            'p_bansos' => 'required|numeric',
+            'p_subsidi' => 'required|numeric',
+            'p_hibah' => 'required|numeric',
+            'r_pegawai' => 'required|numeric',
+            'r_barjas' => 'required|numeric',
+            'r_modal' => 'required|numeric',
+            'r_bansos' => 'required|numeric',
         ];
 
         $msg = [
@@ -57,6 +59,18 @@ class PenyerapanAnggaranController extends Controller
             'r_barjas.required' => 'Realisasi Belanja Barang & Jasa harus diisi.',
             'r_modal.required' => 'Realisasi Belanja Modal harus diisi.',
             'r_bansos.required' => 'Realisasi Belanja Bantuan Sosial harus diisi.',
+            'r_subsidi.required' => 'Realisasi Belanja Subsidi harus diisi.',
+            'r_hibah.required' => 'Realisasi Belanja Hibah harus diisi.',
+            'p_pegawai.numeric' => 'Pagu Belanja Pegawai harus berupa angka.',
+            'p_barjas.numeric' => 'Pagu Belanja Barang & Jasa harus berupa angka.',
+            'p_modal.numeric' => 'Pagu Belanja Modal harus berupa angka.',
+            'p_bansos.numeric' => 'Pagu Belanja Bantuan Sosial harus berupa angka.',
+            'r_pegawai.numeric' => 'Realisasi Belanja Pegawai harus berupa angka.',
+            'r_barjas.numeric' => 'Realisasi Belanja Barang & Jasa harus berupa angka.',
+            'r_modal.numeric' => 'Realisasi Belanja Modal harus berupa angka.',
+            'r_bansos.numeric' => 'Realisasi Belanja Bantuan Sosial harus berupa angka..',
+            'r_subsidi.numeric' => 'Realisasi Belanja Subsidi harus berupa angka.',
+            'r_hibah.numeric' => 'Realisasi Belanja Hibah harus berupa angka.',
         ];
 
         $this->validate($request, $rules, $msg);
@@ -67,19 +81,25 @@ class PenyerapanAnggaranController extends Controller
         $pys->p_barjas = $request->p_barjas;
         $pys->p_modal = $request->p_modal;
         $pys->p_bansos = $request->p_bansos;
+        $pys->p_subsidi = $request->p_subsidi;
+        $pys->p_hibah = $request->p_hibah;
         $pys->r_pegawai = $request->r_pegawai;
         $pys->r_barjas = $request->r_barjas;
         $pys->r_modal = $request->r_modal;
         $pys->r_bansos = $request->r_bansos;
+        $pys->r_subsidi = $request->r_hibah;
+        $pys->r_hibah = $request->r_hibah;
         $pys->save();
 
         $t_pegawai = $pys->p_pegawai * (20 / 100);
         $t_barjas = $pys->p_barjas * (15 / 100);
         $t_modal = $pys->p_modal * (10 / 100);
         $t_bansos = $pys->p_bansos * (25 / 100);
+        $t_subsidi = $pys->p_subsidi * (25 / 100);
+        $t_hibah = $pys->p_hibah * (25 / 100);
 
-        $t_kumulatif = $t_pegawai + $t_barjas + $t_modal + $t_bansos;
-        $r_kumulatif = $pys->r_pegawai + $pys->r_barjas + $pys->r_modal + $pys->r_bansos;
+        $t_kumulatif = $t_pegawai + $t_barjas + $t_modal + $t_bansos + $t_subsidi + $t_hibah;
+        $r_kumulatif = $pys->r_pegawai + $pys->r_barjas + $pys->r_modal + $pys->r_bansos + $pys->r_subsidi + $pys->r_hibah;
         $ikpa = ($r_kumulatif / $t_kumulatif) * 100;
 
         $ikpa > 100 ? $ikpa = 100 : $ikpa;
@@ -124,14 +144,16 @@ class PenyerapanAnggaranController extends Controller
         $id = Crypt::decrypt($request->id);
 
         $rules = [
-            'p_pegawai' => 'required',
-            'p_barjas' => 'required',
-            'p_modal' => 'required',
-            'p_bansos' => 'required',
-            'r_pegawai' => 'required',
-            'r_barjas' => 'required',
-            'r_modal' => 'required',
-            'r_bansos' => 'required',
+            'p_pegawai' => 'required|numeric',
+            'p_barjas' => 'required|numeric',
+            'p_modal' => 'required|numeric',
+            'p_bansos' => 'required|numeric',
+            'p_subsidi' => 'required|numeric',
+            'p_hibah' => 'required|numeric',
+            'r_pegawai' => 'required|numeric',
+            'r_barjas' => 'required|numeric',
+            'r_modal' => 'required|numeric',
+            'r_bansos' => 'required|numeric',
         ];
 
         $msg = [
@@ -143,6 +165,18 @@ class PenyerapanAnggaranController extends Controller
             'r_barjas.required' => 'Realisasi Belanja Barang & Jasa harus diisi.',
             'r_modal.required' => 'Realisasi Belanja Modal harus diisi.',
             'r_bansos.required' => 'Realisasi Belanja Bantuan Sosial harus diisi.',
+            'r_subsidi.required' => 'Realisasi Belanja Subsidi harus diisi.',
+            'r_hibah.required' => 'Realisasi Belanja Hibah harus diisi.',
+            'p_pegawai.numeric' => 'Pagu Belanja Pegawai harus berupa angka.',
+            'p_barjas.numeric' => 'Pagu Belanja Barang & Jasa harus berupa angka.',
+            'p_modal.numeric' => 'Pagu Belanja Modal harus berupa angka.',
+            'p_bansos.numeric' => 'Pagu Belanja Bantuan Sosial harus berupa angka.',
+            'r_pegawai.numeric' => 'Realisasi Belanja Pegawai harus berupa angka.',
+            'r_barjas.numeric' => 'Realisasi Belanja Barang & Jasa harus berupa angka.',
+            'r_modal.numeric' => 'Realisasi Belanja Modal harus berupa angka.',
+            'r_bansos.numeric' => 'Realisasi Belanja Bantuan Sosial harus berupa angka..',
+            'r_subsidi.numeric' => 'Realisasi Belanja Subsidi harus berupa angka.',
+            'r_hibah.numeric' => 'Realisasi Belanja Hibah harus berupa angka.',
         ];
 
         $this->validate($request, $rules, $msg);
@@ -152,10 +186,14 @@ class PenyerapanAnggaranController extends Controller
             'p_barjas' => $request->p_barjas,
             'p_modal' => $request->p_modal,
             'p_bansos' => $request->p_bansos,
+            'p_subsidi' => $request->p_subsidi,
+            'p_hibah' => $request->p_hibah,
             'r_pegawai' => $request->r_pegawai,
             'r_barjas' => $request->r_barjas,
             'r_modal' => $request->r_modal,
             'r_bansos' => $request->r_bansos,
+            'r_subsidi' => $request->r_subsidi,
+            'r_hibah' => $request->r_hibah,
             'updated_at' => now()
         ]);
 
@@ -165,9 +203,11 @@ class PenyerapanAnggaranController extends Controller
         $t_barjas = $request->p_barjas * (15 / 100);
         $t_modal = $request->p_modal * (10 / 100);
         $t_bansos = $request->p_bansos * (25 / 100);
+        $t_subsidi = $request->p_subsidi * (25 / 100);
+        $t_hibah = $request->p_hibah * (25 / 100);
 
-        $t_kumulatif = $t_pegawai + $t_barjas + $t_modal + $t_bansos;
-        $r_kumulatif = $request->r_pegawai + $request->r_barjas + $request->r_modal + $request->r_bansos;
+        $t_kumulatif = $t_pegawai + $t_barjas + $t_modal + $t_bansos + $t_subsidi + $t_hibah;
+        $r_kumulatif = $request->r_pegawai + $request->r_barjas + $request->r_modal + $request->r_bansos + $request->r_subsidi + $request->r_hibah;
         $ikpa = ($r_kumulatif / $t_kumulatif) * 100;
 
         $ikpa > 100 ? $ikpa = 100 : $ikpa;
