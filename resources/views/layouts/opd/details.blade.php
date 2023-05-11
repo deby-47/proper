@@ -137,7 +137,9 @@
                                     <tr>
                                         <th scope="col" class="sort" data-sort="deviasi" style="text-align:left ;font-size:15px;"> Deviasi Rencana Penarikan Dana </th>
                                         <td class="deviasi" style="text-align:center">
-
+                                            <strong>
+                                                {{ $opds->n_deviasi }}
+                                            </strong>
                                         </td>
                                     </tr>
                                     <tr>
@@ -151,19 +153,33 @@
                                     <tr>
                                         <th scope="col" class="sort" data-sort="pengelolaan" style="text-align:left ;font-size:15px;"> Pengelolaan UP dan TUP </th>
                                         <td class="pengelolaan" style="text-align:center">
-
+                                            <strong>
+                                                {{ $opds->n_up }}
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="dispensasi" style="text-align:left ;font-size:15px;"> Dispensasi SPM </th>
+                                        <td class="dispensasi" style="text-align:center">
+                                            <strong>
+                                                {{ $opds->n_dispensasi }}
+                                            </strong>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="col" class="sort" data-sort="output" style="text-align:left ;font-size:15px;"> Capaian Output </th>
                                         <td class="output" style="text-align:center">
-
+                                            <strong>
+                                                {{ $opds->n_output }}
+                                            </strong>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="col" class="sort" data-sort="nilai" style="text-align:left;font-size:15px;"><strong> Nilai IKPA Kumulatif </strong></th>
                                         <td class="output" style="text-align:center">
-
+                                            <strong>
+                                                {{ number_format($opds->n_ikpa, 2) }}
+                                            </strong>
                                         </td>
                                     </tr>
                                 </thead>
