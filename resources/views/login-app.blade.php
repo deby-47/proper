@@ -44,7 +44,7 @@
     </div>
 
     @guest()
-    @include('layouts.footers.guest')
+    @include('auth.footers')
     @endguest
 
     <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>

@@ -3,6 +3,7 @@
         <a href="{{ route('home') }}">
             <img src="{{ asset('assets') }}/img/brand/favicon.png" width="100px"/>
         </a>
+        <img src="{{ asset('assets') }}/img/brand/logo.png" width="160px" style="position: absolute; right: 240px;" />
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
