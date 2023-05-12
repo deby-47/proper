@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="table-responsive">
                                         <form action="/deviasi/cari" method="GET">
-                                            <div class="col-auto mb-3"> 
+                                            <div class="col-auto mb-3">
                                                 <div class="input-group-prepend">
                                                     <span>
                                                         <div class="col-auto">
@@ -178,7 +178,7 @@
                                                     </td>
                                                     <td class="jumlah_dispensasi" style="text-align:center">
                                                         <strong>
-                                                        {{ "Rp" . number_format($dvs->n_realisasi, 2, ',','.') }}
+                                                            {{ "Rp" . number_format($dvs->n_realisasi, 2, ',','.') }}
                                                         </strong>
                                                     </td>
                                                     <td class="ikpa" style="text-align:center">

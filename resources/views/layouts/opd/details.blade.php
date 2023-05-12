@@ -187,6 +187,7 @@
                                 </thead>
                                 @endforeach
                             </table>
+                            <a href="{{ route('opd.index') }}" class="btn btn-primary" style="margin: 10px; margin-left: 22px;">Kembali</a>
                         </div>
                         <div class="card-footer py-4">
                             <nav class="d-flex justify-content-end" aria-label="...">

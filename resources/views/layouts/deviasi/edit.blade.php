@@ -48,7 +48,8 @@
                             <label for="n_realisasi">Total Realisasi</label>
                             <input value="{{ $dvs->n_realisasi }}" id="n_realisasi" type="text" class="form-control" name="n_realisasi" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <a href="{{ route('deviasi.index') }}" class="btn btn-primary">Kembali</a>
                     </form>
                     @endforeach
                 </div>

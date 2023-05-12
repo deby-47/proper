@@ -121,8 +121,8 @@
                                 <div class="col-8">
                                     <h2 class="text-white mb-0">Detail Pergeseran Anggaran</h2>
                                     <h3 class="text-white mb-0"><strong> {{ $title }} </strong></h3>
+                                    <a href="{{ route('pergeseran.index') }}" class="btn btn-primary" style="margin-top: 10px;">Kembali</a>
                                 </div>
-                                
                             </div>
                         </div>
 

@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UPTUPController;
+use App\Http\Controllers\CapaianROController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,5 +68,26 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/dispensasi-spm/edit/{id}', ['as' => 'dispensasi.edit', 'uses' => 'App\Http\Controllers\DispensasiController@edit']);
 	Route::post('/dispensasi-spm/edit/{id}', ['as' => 'dispensasi.update', 'uses' => 'App\Http\Controllers\DispensasiController@update']);
 	Route::post('/dispensasi-spm/hapus/{id}', ['as' => 'dispensasi.delete', 'uses' => 'App\Http\Controllers\DispensasiController@delete']);
+
+	Route::group(['prefix' => 'up-tup'], function () {
+        Route::get('/',                            [UPTUPController::class,'index'])->name('up-tup.index');
+        Route::get('/create',                      [UPTUPController::class,'create'])->name('up-tup.create');
+        Route::get('/edit/{id}',                   [UPTUPController::class,'edit'])->name('up-tup.edit');
+        Route::post('/store',                      [UPTUPController::class,'store'])->name('up-tup.store');
+        Route::post('/update',                     [UPTUPController::class,'update'])->name('up-tup.update');
+        Route::post('/delete',                     [UPTUPController::class,'delete'])->name('up-tup.delete');
+        Route::get('/export',                      [UPTUPController::class,'export'])->name('up-tup.export');
+    });
+
+
+	Route::group(['prefix' => 'capaian-ro'], function () {
+        Route::get('/',                            [CapaianROController::class,'index'])->name('capaian-ro.index');
+        Route::get('/create',                      [CapaianROController::class,'create'])->name('capaian-ro.create');
+        Route::get('/edit/{id}',                   [CapaianROController::class,'edit'])->name('capaian-ro.edit');
+        Route::post('/store',                      [CapaianROController::class,'store'])->name('capaian-ro.store');
+        Route::post('/update',                     [CapaianROController::class,'update'])->name('capaian-ro.update');
+        Route::post('/delete',                     [CapaianROController::class,'delete'])->name('capaian-ro.delete');
+        Route::get('/export',                      [CapaianROController::class,'export'])->name('capaian-ro.export');
+    });
 });
 

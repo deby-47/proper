@@ -3,7 +3,7 @@
         width: 105px;
         height: 140px;
         margin-top: 20px;
-        background-image: url("{{ asset('assets') }}/img/brand/favicon.png");
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Coat_of_arms_of_North_Kalimantan_%282021_version%29.svg/1200px-Coat_of_arms_of_North_Kalimantan_%282021_version%29.svg.png");
         background-size: cover;
         background-repeat: no-repeat;
     }
@@ -73,7 +73,7 @@
                         <i class="ni ni-chart-pie-35 ni-tv-5 text-primary"></i> {{ __('Grafik Kinerja') }}
                     </a>
                     <a class="nav-link" href="{{ route('opd.index') }}">
-                        <i class="ni ni-tv-5 text-primary"></i> {{ __('OPD') }}
+                        <i class="ni ni-badge text-primary"></i> {{ __('OPD') }}
                     </a>
                 </li>
             </ul>
@@ -107,7 +107,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">
+                                <a class="nav-link" href="{{ route('up-tup.index') }}">
                                     {{ __('Pengelolaan UP dan TUP') }}
                                 </a>
                             </li>
@@ -117,8 +117,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">
-                                    {{ __('Capaian Output') }}
+                                <a class="nav-link" href="{{ route('capaian-ro.index') }}">
+                                    {{ __('Capaian Realisasi Outcome') }}
                                 </a>
                             </li>
                         </ul>

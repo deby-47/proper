@@ -52,7 +52,8 @@
                             <label for="tanggal">Tanggal</label>
                             <input id="tanggal" type="date" class="form-control" name="tanggal" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <a href="{{ route('pergeseran.index') }}" class="btn btn-primary">Kembali</a>
                     </form>
                 </div>
             </div>

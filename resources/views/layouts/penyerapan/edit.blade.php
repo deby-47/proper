@@ -88,7 +88,8 @@
                             <label for="r_hibah">Realisasi Belanja Hibah</label>
                             <input value="{{ $pys->r_hibah }}" id="r_hibah" type="text" class="form-control" name="r_hibah" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <a href="{{ route('penyerapan.index') }}" class="btn btn-primary">Kembali</a>
                     </form>
                     @endforeach
                 </div>

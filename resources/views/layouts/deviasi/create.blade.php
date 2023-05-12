@@ -52,7 +52,8 @@
                             <label for="n_realisasi">Total Realisasi</label>
                             <input id="n_realisasi" type="text" class="form-control" name="n_realisasi" placeholder="Total Realisasi" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <a href="{{ route('deviasi.index') }}" class="btn btn-primary">Kembali</a>
                     </form>
                 </div>
             </div>
