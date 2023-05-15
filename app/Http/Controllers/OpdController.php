@@ -14,7 +14,7 @@ class OpdController extends Controller
         $opds = DB::table('tab_opd')
             ->leftJoin('tab_ikpa', 'tab_ikpa.id_opd', '=', 'tab_opd.id')
             ->where('status', '=', 1)
-            ->orderBy('tab_opd.id', 'ASC')
+            ->orderBy('tab_ikpa.n_ikpa', 'DESC')
             ->paginate(10);
 
         return view('layouts.opd.index', [

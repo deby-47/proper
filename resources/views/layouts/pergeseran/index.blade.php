@@ -124,9 +124,9 @@
                         <!-- Dark table -->
                         <div class="row">
                             <div class="col">
-                                <div class="card bg-default shadow">
-                                    <div class="card-header bg-transparent border-0">
-                                        <h3 class="text-white mb-0">Pergeseran Anggaran</h3>
+                                <div class="card">
+                                    <div class="card-header border-0">
+                                        <h3 class="mb-0">Pergeseran Anggaran</h3>
                                     </div>
                                     <div class="table-responsive">
                                         <form action="/pergeseran/cari" method="GET">
@@ -141,14 +141,14 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <table class="table align-items-center table-dark table-flush">
-                                            <thead class="thead-dark">
+                                        <table class="table align-items-center table-flush">
+                                            <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col" class="sort" data-sort="no" style="text-align:center;font-size:12px;">No</th>
-                                                    <th scope="col" class="sort" data-sort="nama" style="text-align:center;font-size:12px;"><strong> Organisasi Perangkat Daerah</strong></th>
-                                                    <th scope="col" class="sort" data-sort="frekuensi" style="text-align:center;font-size:12px;"><strong> Frekuensi Revisi </strong></th>
-                                                    <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;"><strong> Nilai IKPA Pergeseran Anggaran </strong></th>
-                                                    <th scope="col" class="sort" style="text-align:center;font-size:12px;"><strong> Action </strong></th>
+                                                    <th scope="col" class="sort" data-sort="nama" style="text-align:center;font-size:12px;"> Organisasi Perangkat Daerah </th>
+                                                    <th scope="col" class="sort" data-sort="frekuensi" style="text-align:center;font-size:12px;"> Frekuensi Revisi </th>
+                                                    <th scope="col" class="sort" data-sort="ikpa" style="text-align:center;font-size:12px;"> Nilai IKPA Pergeseran Anggaran </th>
+                                                    <th scope="col" class="sort" style="text-align:center;font-size:12px;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
