@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['prefix' => 'up-tup'], function () {
         Route::get('/',                            [UPTUPController::class,'index'])->name('up-tup.index');
+		Route::get('/cari',                        [UPTUPController::class,'search'])->name('up-tup.search');
         Route::get('/create',                      [UPTUPController::class,'create'])->name('up-tup.create');
         Route::get('/edit/{id}',                   [UPTUPController::class,'edit'])->name('up-tup.edit');
         Route::post('/store',                      [UPTUPController::class,'store'])->name('up-tup.store');

@@ -19,8 +19,8 @@
                     <div class="card-header bg-transparent">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
-                                <h2 class="text-white mb-0">OPD</h2>
+                                <h6 class="text-uppercase ls-1 mb-1">Overview</h6>
+                                <h4 class="mb-0"><strong> GRAFIK KINERJA ORGANISASI PERANGKAT DAERAH PROVINSI KALIMANTAN UTARA </strong></h4>
                             </div>
                             <div class="col">
 

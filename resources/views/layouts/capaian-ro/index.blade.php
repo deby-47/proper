@@ -18,86 +18,101 @@
             <div class="card">
                 <div class="row">
                     <div class="col">
-
+                        
                         <div class="card bg-transparent shadow">
                             <div class="card-header bg-transparent border-0 row">
                                 <div class="col-lg-6 col-7">
-                                    <h3 class="mb-0">Capaian RO</h3>
+                                    <h3 class="mb-0">Capaian Realisasi Keluaran</h3>
                                 </div>
                                 <div class="col-lg-6 col-5 text-right">
-                                    <a href="{{ route('capaian-ro.create') }}" class="btn btn-primary">Tambah Data</a>
+                                    <a href="{{ route('capaian-ro.create') }}"
+                                        class="btn btn-primary">Tambah Data</a>
 
-                                    <!-- <a href="{{ route('capaian-ro.export') }}" class="btn btn-success">Export Data</a> -->
+                                        <!--<a href="{{ route('capaian-ro.export') }}"-->
+                                        <!--class="btn btn-success">Export Data</a>-->
                                 </div>
-
-
+                                <form action="/capaian-ro/cari" method="GET">
+                                    <div class="col-auto mb-3">
+                                        <div class="input-group-prepend">
+                                            <span>
+                                                <div class="col-auto">
+                                                    <input type="text" name="search" class="form-control" id="search" placeholder="Search..." value="{{ old('search') }}">
+                                                </div>
+                                            </span>
+                                            <button id="search" type="submit" class="btn btn-primary">Cari</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            @if (Session::get('success'))
-                            <div class="alert alert-primary" role="alert">
-                                {{ Session::get('success') }}
-                            </div>
-                            @elseif (Session::get('failed'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ Session::get('failed') }}
-                            </div>
-                            @endif
-
+                                @if (Session::get('success'))
+                                    <div class="alert alert-primary" role="alert">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @elseif (Session::get('failed'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ Session::get('failed') }}
+                                    </div>
+                                @endif
+                               
                             <div class="table-responsive" style="padding: 5px">
                                 <table class="table align-items-center table-flush">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
+                                            <th scope="col">Organisasi Perangkat Daerah</th>
                                             <th scope="col">Sub Kegiatan</th>
-                                            <th scope="col">RO</th>
-                                            <th scope="col">Target RO</th>
+                                            <th scope="col">Target RK</th>
                                             <th scope="col">Satuan</th>
-                                            <th scope="col">RVRO</th>
-                                            <th scope="col">PCRO</th>
+                                            <th scope="col">RVRK</th>
+                                            <th scope="col">PCRK</th>
                                             <th scope="col">Status Konfirmasi</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="list">
                                         @foreach($capaian as $key => $value)
-                                        <tr>
-                                            <td scope="row">
-                                                {{ $key+1 }}
-                                            </td>
-                                            <td>
-                                                {{ $value->sub_kegiatan }}
-                                            </td>
+                                            <tr>
+                                                <td scope="row">
+                                                    {{ $key+1 }}
+                                                </td>
+                                                <td>
+                                                    {{ $value->nama }}
+                                                </td>
+                                                <td>
+                                                    {{ $value->program }}
+                                                </td>
+                                                <td>
+                                                    {{ $value->target_ro }}
+                                                </td>
+                                                <td>
+                                                    {{ $value->satuan }}
+                                                </td>
+                                                <td>
+                                                    {{ $value->rvro }}
+                                                </td>
+                                                <td>
+                                                    {{ $value->pcro }} %
+                                                </td>
+                                                <td>
+                                                    @if($value->status_konfirmasi == 1)
+                                                        Terkonfirmasi
+                                                    @elseif($value->status_konfirmasi == 2)
+                                                        Tidak Terkonfirmasi	
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('capaian-ro.edit',$value->id_capaian_ro) }}"
+                                                        class="btn btn-success btn-sm"><i
+                                                            class="fa fa-pencil-alt"></i></a>
 
-                                            <td>
-                                                {{ $value->ro }}
-                                            </td>
-                                            <td>
-                                                {{ $value->target_ro }}
-                                            </td>
-                                            <td>
-                                                {{ $value->satuan }}
-                                            </td>
-                                            <td>
-                                                {{ $value->rvro }}
-                                            </td>
-                                            <td>
-                                                {{ $value->pcro }} %
-                                            </td>
-                                            <td>
-                                                @if($value->status_konfirmasi == 1)
-                                                Terkonfirmasi
-                                                @elseif($value->status_konfirmasi == 2)
-                                                Tidak Terkonfirmasi
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('capaian-ro.edit',$value->id_capaian_ro) }}" class="btn btn-success btn-sm"><i class="fa fa-pencil-alt"></i></a>
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        data-toggle="modal" data-target="#exampleModal"
+                                                        data-id="{{ $value->id_capaian_ro }}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
 
-                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal" data-id="{{ $value->id_capaian_ro }}">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -119,7 +134,8 @@
     <!-- Footer -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -146,16 +162,17 @@
 </div>
 @endsection
 @push('js')
-<script src="{{ asset('argon') }}/vendor/js-cookie/js.cookie.js"></script>
-<script src="{{ asset('argon') }}/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js">
-</script>
-<script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-<script>
-    $('#exampleModal').on('show.bs.modal', function(e) {
-        var dataID = $(e.relatedTarget).attr('data-id');
-        $("#id_capaian_ro_d").val(dataID);
-    });
-</script>
+    <script src="{{ asset('argon') }}/vendor/js-cookie/js.cookie.js"></script>
+    <script src="{{ asset('argon') }}/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js">
+    </script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script>
+        
+        $('#exampleModal').on('show.bs.modal', function (e) {
+            var dataID = $(e.relatedTarget).attr('data-id');
+            $("#id_capaian_ro_d").val(dataID);
+        });
+    </script>
 @endpush

@@ -27,6 +27,7 @@ class CapaianROModel extends Model
             ->first();
         }
         return DB::table('tab_capaian_ro')
+            ->join('tab_opd', 'tab_opd.id', '=', 'tab_capaian_ro.id_opd')
             ->paginate(10);
     }
 
@@ -36,29 +37,34 @@ class CapaianROModel extends Model
             ->get();
     }
 
+    public function getTahunPelaporan()
+    {
+        return DB::table('tab_pelaporan')
+            ->where('status',1)
+            ->first();
+    }
+    
+
     public function savecapaian($request)
     {
         try {
             $sv                         = new CapaianROModel();
             $sv->id_opd                 = $request->id_opd;
-            $sv->sub_kegiatan           = $request->sub_kegiatan;
-            $sv->ro                     = $request->ro;
+            $sv->program                = $request->program;
+            $sv->id_pelaporan           = $this->getTahunPelaporan()->id_pelaporan;
             $sv->target_ro              = $request->target_ro;
             $sv->satuan                 = $request->satuan;
             $sv->rvro                   = $request->rvro;
             $sv->pcro                   = $request->pcro;
             $sv->status_konfirmasi      = $request->status_konfirmasi;
             $sv->target_pcro            = $request->target_pcro;
-            $sv->batas_waktu_pelaporan  = $request->batas_waktu_pelaporan;
             $sv->tanggal_kirim          = $request->tanggal_kirim;
-            $sv->tanggal_kosong         = $request->tanggal_kosong;
-            $sv->status                 = $request->status;
+            $sv->status                 = $request->status_kode;
             $sv->komponen_tepat_waktu   = $request->komponen_tepat_waktu;
             $sv->komponen_capaian_ro    = $request->komponen_capaian_ro;
             $sv->save();
             return TRUE;
         } catch (\Throwable $th) {
-            dd($th);
             return FALSE;
         }
     }
@@ -70,18 +76,15 @@ class CapaianROModel extends Model
             ->where('id_capaian_ro',$request->id_capaian_ro)
             ->update([
                 "id_opd"                 => $request->id_opd,
-                "sub_kegiatan"           => $request->sub_kegiatan,
-                "ro"                     => $request->ro,
+                "program"                => $request->program,
                 "target_ro"              => $request->target_ro,
                 "satuan"                 => $request->satuan,
                 "rvro"                   => $request->rvro,
                 "pcro"                   => $request->pcro,
                 "status_konfirmasi"      => $request->status_konfirmasi,
                 "target_pcro"            => $request->target_pcro,
-                "batas_waktu_pelaporan"  => $request->batas_waktu_pelaporan,
                 "tanggal_kirim"          => $request->tanggal_kirim,
-                "tanggal_kosong"         => $request->tanggal_kosong,
-                "status"                 => $request->status,
+                "status"                 => $request->status_kode,
                 "komponen_tepat_waktu"   => $request->komponen_tepat_waktu,
                 "komponen_capaian_ro"    => $request->komponen_capaian_ro
             ]);
@@ -97,6 +100,31 @@ class CapaianROModel extends Model
         try {
             DB::table('tab_capaian_ro')->where('id_capaian_ro',$request->id_capaian_ro)
             ->delete();
+            return TRUE;
+        } catch (\Throwable $th) {
+            return FALSE;
+        }
+    }
+    
+      public function getDataRO($id_opd)
+    {
+        $id_pelaporan = $this->getTahunPelaporan()->id_pelaporan;
+        
+        return DB::table('tab_capaian_ro')
+                ->where('id_opd',$id_opd)
+                ->where('id_pelaporan',$id_pelaporan)
+                ->get();
+      
+    }
+
+    public function updateNilaiOutput($id_opd,$nilai_akhir)
+    {
+        try {
+            DB::table('tab_ikpa')
+            ->where('id_opd',$id_opd)
+            ->update([
+                "n_output" => $nilai_akhir,
+            ]);
             return TRUE;
         } catch (\Throwable $th) {
             return FALSE;

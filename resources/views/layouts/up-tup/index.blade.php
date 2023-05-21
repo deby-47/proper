@@ -18,42 +18,54 @@
             <div class="card">
                 <div class="row">
                     <div class="col">
-                        
+
                         <div class="card bg-transparent shadow">
                             <div class="card-header bg-transparent border-0 row">
                                 <div class="col-lg-6 col-7">
                                     <h3 class="mb-0">UP TUP</h3>
                                 </div>
                                 <div class="col-lg-6 col-5 text-right">
-                                    <a href="{{ route('up-tup.create') }}"
-                                        class="btn btn-primary">Tambah Data</a>
-                                        
-                                    <a href="{{ route('up-tup.export') }}"
-                                        class="btn btn-success">Export Data</a>
-                                </div>
+                                    <a href="{{ route('up-tup.create') }}" class="btn btn-primary">Tambah Data</a>
 
-                               
+                                    {{-- <a href="{{ route('up-tup.export') }}"
+                                    class="btn btn-success">Export Data</a> --}}
+                                </div>
+                                <form action="/up-tup/cari" method="GET">
+                                    <div class="col-auto mb-3">
+                                        <div class="input-group-prepend">
+                                            <span>
+                                                <div class="col-auto">
+                                                    <input type="text" name="search" class="form-control" id="search" placeholder="Search..." value="{{ old('search') }}">
+                                                </div>
+                                            </span>
+                                            <button id="search" type="submit" class="btn btn-primary">Cari</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+
                             </div>
-                                @if (Session::get('success'))
-                                    <div class="alert alert-primary" role="alert">
-                                        {{ Session::get('success') }}
-                                    </div>
-                                @elseif (Session::get('failed'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ Session::get('failed') }}
-                                    </div>
-                                @endif
-                               
+                            @if (Session::get('success'))
+                            <div class="alert alert-primary" role="alert">
+                                {{ Session::get('success') }}
+                            </div>
+                            @elseif (Session::get('failed'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ Session::get('failed') }}
+                            </div>
+                            @endif
+
                             <div class="table-responsive" style="padding: 5px">
                                 <table class="table align-items-center table-flush">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
+                                            <th scope="col">Nama OPD</th>
                                             <th scope="col">Jenis</th>
                                             <th scope="col">Tanggal</th>
                                             <th scope="col">Selisih</th>
                                             <th scope="col">Total GU</th>
-                                            <th scope="col">Outstanding UP / TUP</th>
+                                            {{-- <th scope="col">Outstanding UP / TUP</th> --}}
                                             <th scope="col">Persen (%) GUP</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Aksi</th>
@@ -61,62 +73,64 @@
                                     </thead>
                                     <tbody class="list">
                                         @foreach($uptup as $key => $value)
-                                            <tr>
-                                                <td scope="row">
-                                                    {{ $key+1 }}
-                                                </td>
-                                                <td>
-                                                    @if($value->jenis_up == 1)
-                                                        GUP
-                                                    @elseif($value->jenis_up == 2)
-                                                        Jumlah
-                                                    @elseif($value->jenis_up == 3)
-                                                        Nilai Komponen
-                                                    @elseif($value->jenis_up == 4)
-                                                        PTUP
-                                                    @elseif($value->jenis_up == 5)
-                                                        Setoran TUP
-                                                    @elseif($value->jenis_up == 6)
-                                                        TUP
-                                                    @elseif($value->jenis_up == 7)
-                                                        UP
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    {{ date('d-M-Y',strtotime($value->tanggal_up )) }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->selisih_hari_up }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->total_gu_up }}
-                                                </td>
-                                                <td>
+                                        <tr>
+                                            <td scope="row">
+                                                {{ $key+1 }}
+                                            </td>
+                                            <td>
+                                                {{ $value->nama }}
+                                            </td>
+                                            <td>
+                                                @if($value->jenis_up == 1)
+                                                UP
+                                                @elseif($value->jenis_up == 2)
+                                                GUP
+                                                @elseif($value->jenis_up == 3)
+                                                TUP
+                                                @elseif($value->jenis_up == 4)
+                                                PTUP
+                                                @elseif($value->jenis_up == 5)
+                                                Setoran TUP
+                                                @elseif($value->jenis_up == 6)
+                                                Jumlah
+                                                @elseif($value->jenis_up == 7)
+                                                Nilai Komponen
+                                                @endif
+
+                                            </td>
+                                            <td>
+                                                {{ date('d-M-Y',strtotime($value->tanggal_up )) }}
+                                            </td>
+                                            <td>
+                                                {{ $value->selisih_hari_up }}
+                                            </td>
+                                            <td>
+                                                {{ "Rp" . number_format($value->total_gu_up, 2, ',','.') }}
+                                            </td>
+                                            {{-- <td>
                                                     {{ $value->outstanding_up }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->persen_up }} %
-                                                </td>
-                                                <td>
-                                                    @if($value->status_up == 1)
-                                                        Tepat Waktu
-                                                    @elseif($value->status_up == 2)
-                                                        Terlambat
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('up-tup.edit',$value->id_up_tup) }}"
-                                                        class="btn btn-success btn-sm"><i
-                                                            class="fa fa-pencil-alt"></i></a>
+                                            </td> --}}
+                                            <td>
+                                                @if ($value->persen_up != NULL)
+                                                {{ $value->persen_up }} %
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($value->status_up == 1)
+                                                Tepat Waktu
+                                                @elseif($value->status_up == 2)
+                                                Terlambat
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('up-tup.edit',$value->id_up_tup) }}" class="btn btn-success btn-sm"><i class="fa fa-pencil-alt"></i></a>
 
-                                                    <button type="button" class="btn btn-danger btn-sm"
-                                                        data-toggle="modal" data-target="#exampleModal"
-                                                        data-id="{{ $value->id_up_tup }}">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal" data-id="{{ $value->id_up_tup }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
 
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -138,8 +152,7 @@
     <!-- Footer -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -166,17 +179,16 @@
 </div>
 @endsection
 @push('js')
-    <script src="{{ asset('argon') }}/vendor/js-cookie/js.cookie.js"></script>
-    <script src="{{ asset('argon') }}/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js">
-    </script>
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-    <script>
-        
-        $('#exampleModal').on('show.bs.modal', function (e) {
-            var dataID = $(e.relatedTarget).attr('data-id');
-            $("#id_up_tup_d").val(dataID);
-        });
-    </script>
+<script src="{{ asset('argon') }}/vendor/js-cookie/js.cookie.js"></script>
+<script src="{{ asset('argon') }}/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="{{ asset('argon') }}/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js">
+</script>
+<script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+<script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+<script>
+    $('#exampleModal').on('show.bs.modal', function(e) {
+        var dataID = $(e.relatedTarget).attr('data-id');
+        $("#id_up_tup_d").val(dataID);
+    });
+</script>
 @endpush

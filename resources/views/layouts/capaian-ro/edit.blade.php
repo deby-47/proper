@@ -21,11 +21,12 @@
                         <div class="card bg-transparent shadow">
                             <div class="card-header bg-transparent border-0 row">
                                 <div class="col-lg-6 col-7">
-                                    <h3 class="mb-0">Capaian RO</h3> <br>
-                                    <h3>Form Edit Data Capaian RO</h3>
+                                    <h3 class="mb-0">Capaian Realisasi Keluaran</h3> <br>
+                                    <h3>Form Edit Data Capaian RK</h3>
                                 </div>
                                 <div class="col-lg-6 col-5 text-right">
-                                    <a href="{{ route('up-tup.index') }}" class="btn btn-primary">Kembali</a>
+                                    <a href="{{ route('up-tup.index') }}"
+                                        class="btn btn-primary">Kembali</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -36,114 +37,117 @@
                                             <select class="custom-select" name="id_opd">
                                                 <option selected disabled>Pilih Organisasi Perangkat Daerah</option>
                                                 @foreach ($opd as $item)
-                                                @php
-                                                $statusOPD = "";
-                                                if($item->id == $capaian->id_opd){
-                                                $statusOPD = "selected";
-                                                }
-                                                @endphp
-                                                <option value="{{ $item->id }}" {{ $statusOPD }}>{{ $item->nama }}</option>
+                                                    @php
+                                                        $statusOPD = "";
+                                                        if($item->id == $capaian->id_opd){
+                                                            $statusOPD = "selected";
+                                                        }
+                                                    @endphp
+                                                    <option value="{{ $item->id }}" {{ $statusOPD }}>{{ $item->nama }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputSubKegiatan">Sub Kegiatan</label>
-                                            <input type="text" class="form-control" name="sub_kegiatan" placeholder="Sub Kegiatan" value="{{ $capaian->sub_kegiatan }}">
+                                                <label for="inputSubKegiatan">Sub Kegiatan</label>
+                                                <input type="text" class="form-control" name="program"  placeholder="Sub Kegiatan" value="{{ $capaian->program }}">
                                         </div>
                                     </div>
-
+                                   
                                     <div class="form-row">
+                                        
+                                      
                                         <div class="form-group col-md-6">
-                                            <label for="inputRO">RO</label>
-                                            <input type="number" class="form-control" name="ro" placeholder="RO" value="{{ $capaian->ro }}">
+                                            <label for="inputTargetRO">Target RK</label>
+                                            <input type="number" step="0.01" class="form-control" name="target_ro" placeholder="Target RK" value="{{ $capaian->target_ro }}" id="target_ro">
                                         </div>
 
-                                        <div class="form-group col-md-6">
-                                            <label for="inputTargetRO">Target RO</label>
-                                            <input type="number" class="form-control" name="target_ro" placeholder="Target RO" value="{{ $capaian->target_ro }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="satuan">Satuan</label>
                                             <input type="text" class="form-control" name="satuan" placeholder="Satuan" value="{{ $capaian->satuan }}">
                                         </div>
+                                      
 
-                                        <div class="form-group col-md-3">
-                                            <label for="rvro">RVRO</label>
-                                            <input type="number" class="form-control" name="rvro" placeholder="RVRO" value="{{ $capaian->rvro }}">
+                                    </div>
+
+                                    <div class="form-row">
+                                       
+                                        <div class="form-group col-md-6">
+                                            <label for="rvro">Realisasi Volume Realisasi Keluaran (RVRK)</label>
+                                            <input type="number" class="form-control" name="rvro" placeholder="RVRK" value="{{ $capaian->rvro }}" id="rvro">
                                         </div>
 
-                                        <div class="form-group col-md-3">
-                                            <label for="pcro">PCRO</label>
-                                            <input type="number" class="form-control" name="pcro" placeholder="PCRO" value="{{ $capaian->pcro }}">
+                                        <div class="form-group col-md-6">
+                                            <label for="pcro">Progres Capaian Realisasi Keuangan (PCRK)</label>
+                                            <input type="number" class="form-control" name="pcro" placeholder="PCRK" id="pcro" value="{{ $capaian->pcro }}" readonly>
                                         </div>
+                                        
+                                        
                                     </div>
 
                                     <div class="form-row">
 
+                                          
                                         <div class="form-group col-md-6">
                                             <label for="inputSelisih">Status Konfirmasi</label>
-                                            <select class="custom-select" name="status_konfirmasi">
+                                            <select class="custom-select" name="status_konfirmasi" id="status_konfirmasi">
                                                 <option selected disabled>Pilih Status</option>
-                                                <option value="1" {{ ($capaian->status_konfirmasi == "1") ? "selected" : "" }}>Terkonfirmasi</option>
-                                                <option value="2" {{ ($capaian->status_konfirmasi == "2") ? "selected" : "" }}>Tidak Terkonfirmasi </option>
+                                                <option value="1"  {{ ($capaian->status_konfirmasi == "1") ? "selected" : "" }}>Terkonfirmasi</option>
+                                                <option value="2"  {{ ($capaian->status_konfirmasi == "2") ? "selected" : "" }}>Tidak Terkonfirmasi	</option>
                                             </select>
                                         </div>
 
 
                                         <div class="form-group col-md-6">
-                                            <label for="inputtarget">Target PCRO</label>
-                                            <input type="number" class="form-control" name="target_pcro" placeholder="Target PCRO" value="{{ $capaian->target_pcro }}">
+                                            <label for="inputtarget">Target Progres Capaian Realisasi Keuangan (PCRK) </label>
+                                            <input type="number" class="form-control" name="target_pcro" placeholder="Target PCRK" value="{{ $capaian->target_pcro }}"> 
                                         </div>
-
+                                    
                                     </div>
 
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="bataspelaporan">Batas Waktu Pelaporan</label>
-                                            <input type="date" class="form-control" name="batas_waktu_pelaporan" placeholder="Batas Waktu Pelaporan" value="{{ $capaian->batas_waktu_pelaporan }}">
-                                        </div>
-
+                                     
                                         <div class="form-group col-md-6">
                                             <label for="tanggal_kirim">Tanggal Kirim</label>
-                                            <input type="date" class="form-control" name="tanggal_kirim" placeholder="Tanggal Kirim" value="{{ $capaian->tanggal_kirim }}">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="tanggal_kosong">&nbsp;</label>
-                                            <input type="date" class="form-control" name="tanggal_kosong" value="{{ $capaian->tanggal_kosong }}">
+                                            <input type="date" class="form-control" name="tanggal_kirim" placeholder="Tanggal Kirim" value="{{ $capaian->tanggal_kirim }}"  id="tgl_kirim">
                                         </div>
 
                                         <div class="form-group col-md-6">
                                             <label for="status">Status</label>
-                                            <select class="custom-select" name="status">
-                                                <option selected disabled>Pilih Status</option>
-                                                <option value="1" {{ ($capaian->status == "1") ? "selected" : "" }}>Tepat Waktu</option>
-                                                <option value="2" {{ ($capaian->status == "2") ? "selected" : "" }}>Terlambat</option>
-                                            </select>
+                                            @php
+                                                $status_kode = 0;
+                                                $status = 0;
+                                                if($capaian->status == 1){
+                                                    $status_kode = 1;
+                                                    $status = "Tepat Waktu";
+                                                }elseif($capaian->status == 2){
+                                                    $status_kode = 2;
+                                                    $status = "Terlambat";
+                                                }
+                                            @endphp
+                                            <input type="text" class="form-control" name="status" id="status" value="{{ $status }}" readonly>
+                                            <input type="hidden" class="form-control" name="status_kode" id="status_kode" value="{{ $status_kode }}">
                                         </div>
-
+                                      
                                     </div>
+
+                                  
 
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="komponen_tepat_waktu">Komponen Tepat Waktu (30%)</label>
-                                            <input type="number" class="form-control" name="komponen_tepat_waktu" placeholder="Komponen Tepat Waktu (30%)" value="{{ $capaian->komponen_tepat_waktu }}">
+                                            <input type="number" class="form-control" name="komponen_tepat_waktu" placeholder="Komponen Tepat Waktu (30%)" value="{{ $capaian->komponen_tepat_waktu }}" id="nilai_tepat_waktu" readonly>
                                         </div>
-
+                                      
                                         <div class="form-group col-md-6">
                                             <label for="komponen_capaian_ro">Komponen Capaian RO (70%)</label>
-                                            <input type="number" class="form-control" name="komponen_capaian_ro" placeholder="Komponen Capaian RO (70%)" value="{{ $capaian->komponen_capaian_ro }}">
+                                            <input type="number" class="form-control" name="komponen_capaian_ro" placeholder="Komponen Capaian RO (70%)" value="{{ $capaian->komponen_capaian_ro }}"  id="nilai_capaian_ro" readonly>
                                         </div>
+                                      
                                     </div>
 
-                                    @csrf
 
+                                    @csrf
+                                    
                                     <input type="hidden" name="id_capaian_ro" value="{{ $capaian->id_capaian_ro }}">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </form>
@@ -159,10 +163,56 @@
 </div>
 @endsection
 @push('js')
-<script src="{{ asset('argon') }}/vendor/js-cookie/js.cookie.js"></script>
-<script src="{{ asset('argon') }}/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js">
-</script>
-<script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-<script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script src="{{ asset('argon') }}/vendor/js-cookie/js.cookie.js"></script>
+    <script src="{{ asset('argon') }}/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js">
+    </script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+
+    <script>
+        
+        $(document).on('keyup', '#target_ro, #rvro', function () {
+            var target_ro = $("#target_ro").val();
+            var rvro      = $("#rvro").val();
+            var hasil = 0
+            if (rvro == 0) {
+                hasil = 0;
+            } else {
+                hasil = (target_ro / rvro) * 100;
+            }
+            $("#pcro").val(hasil);
+        });
+
+        $('#tgl_kirim').change(function(){
+            var batas_pelaporan = "{{ $pelaporan->batas_waktu_pelaporan }}";
+            var batas       = new Date(batas_pelaporan);
+            var kirim       = new Date($(this).val());
+            if (batas < kirim){
+                $("#status").val("Terlambat");
+                $("#status_kode").val(2);
+                $("#nilai_tepat_waktu").val(0);
+
+            }else{
+                $("#status").val("Tepat Waktu");
+                $("#status_kode").val(1);
+                $("#nilai_tepat_waktu").val(100);
+                
+            }
+        });
+
+        $('#status_konfirmasi').change(function(){
+            var status_konfirmasi = $(this).val();
+            if(status_konfirmasi == 1){
+                $("#nilai_capaian_ro").val(100);
+            }else if(status_konfirmasi == 2){
+                $("#nilai_capaian_ro").val(0);
+            }
+
+        });
+
+        
+        
+
+    </script>
 @endpush
