@@ -83,6 +83,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['prefix' => 'capaian-ro'], function () {
         Route::get('/',                            [CapaianROController::class,'index'])->name('capaian-ro.index');
+		Route::get('/details/{id}',                [CapaianROController::class,'details'])->name('capaian-ro.details');
+		Route::get('/cari',                        [CapaianROController::class,'search'])->name('capaian-ro.search');
+		Route::get('/cari-detail',                 [CapaianROController::class,'searchDetails'])->name('capaian-ro.search-details');
         Route::get('/create',                      [CapaianROController::class,'create'])->name('capaian-ro.create');
         Route::get('/edit/{id}',                   [CapaianROController::class,'edit'])->name('capaian-ro.edit');
         Route::post('/store',                      [CapaianROController::class,'store'])->name('capaian-ro.store');

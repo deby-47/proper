@@ -21,13 +21,16 @@ class CapaianROModel extends Model
 
     public function getData($id = NULL)
     {
-        if($id != NULL){
+        if ($id != NULL) {
             return DB::table('tab_capaian_ro')
-            ->where('id_capaian_ro',$id)
-            ->first();
+                ->where('id_capaian_ro', $id)
+                ->first();
         }
         return DB::table('tab_capaian_ro')
+            ->select('tab_capaian_ro.id_opd', 'tab_opd.nama', DB::raw('count(id_opd) as opd'))
+            ->groupBy('tab_opd.nama', 'tab_capaian_ro.id_opd')
             ->join('tab_opd', 'tab_opd.id', '=', 'tab_capaian_ro.id_opd')
+            ->orderBy('opd', 'DESC')
             ->paginate(10);
     }
 
@@ -40,10 +43,10 @@ class CapaianROModel extends Model
     public function getTahunPelaporan()
     {
         return DB::table('tab_pelaporan')
-            ->where('status',1)
+            ->where('status', 1)
             ->first();
     }
-    
+
 
     public function savecapaian($request)
     {
@@ -73,21 +76,21 @@ class CapaianROModel extends Model
     {
         try {
             DB::table('tab_capaian_ro')
-            ->where('id_capaian_ro',$request->id_capaian_ro)
-            ->update([
-                "id_opd"                 => $request->id_opd,
-                "program"                => $request->program,
-                "target_ro"              => $request->target_ro,
-                "satuan"                 => $request->satuan,
-                "rvro"                   => $request->rvro,
-                "pcro"                   => $request->pcro,
-                "status_konfirmasi"      => $request->status_konfirmasi,
-                "target_pcro"            => $request->target_pcro,
-                "tanggal_kirim"          => $request->tanggal_kirim,
-                "status"                 => $request->status_kode,
-                "komponen_tepat_waktu"   => $request->komponen_tepat_waktu,
-                "komponen_capaian_ro"    => $request->komponen_capaian_ro
-            ]);
+                ->where('id_capaian_ro', $request->id_capaian_ro)
+                ->update([
+                    "id_opd"                 => $request->id_opd,
+                    "program"                => $request->program,
+                    "target_ro"              => $request->target_ro,
+                    "satuan"                 => $request->satuan,
+                    "rvro"                   => $request->rvro,
+                    "pcro"                   => $request->pcro,
+                    "status_konfirmasi"      => $request->status_konfirmasi,
+                    "target_pcro"            => $request->target_pcro,
+                    "tanggal_kirim"          => $request->tanggal_kirim,
+                    "status"                 => $request->status_kode,
+                    "komponen_tepat_waktu"   => $request->komponen_tepat_waktu,
+                    "komponen_capaian_ro"    => $request->komponen_capaian_ro
+                ]);
             return TRUE;
         } catch (\Throwable $th) {
             dd($th);
@@ -98,33 +101,32 @@ class CapaianROModel extends Model
     public function deletecapaian($request)
     {
         try {
-            DB::table('tab_capaian_ro')->where('id_capaian_ro',$request->id_capaian_ro)
-            ->delete();
+            DB::table('tab_capaian_ro')->where('id_capaian_ro', $request->id_capaian_ro)
+                ->delete();
             return TRUE;
         } catch (\Throwable $th) {
             return FALSE;
         }
     }
-    
-      public function getDataRO($id_opd)
+
+    public function getDataRO($id_opd)
     {
         $id_pelaporan = $this->getTahunPelaporan()->id_pelaporan;
-        
+
         return DB::table('tab_capaian_ro')
-                ->where('id_opd',$id_opd)
-                ->where('id_pelaporan',$id_pelaporan)
-                ->get();
-      
+            ->where('id_opd', $id_opd)
+            ->where('id_pelaporan', $id_pelaporan)
+            ->get();
     }
 
-    public function updateNilaiOutput($id_opd,$nilai_akhir)
+    public function updateNilaiOutput($id_opd, $nilai_akhir)
     {
         try {
             DB::table('tab_ikpa')
-            ->where('id_opd',$id_opd)
-            ->update([
-                "n_output" => $nilai_akhir,
-            ]);
+                ->where('id_opd', $id_opd)
+                ->update([
+                    "n_output" => $nilai_akhir,
+                ]);
             return TRUE;
         } catch (\Throwable $th) {
             return FALSE;
