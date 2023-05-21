@@ -67,7 +67,7 @@
                                         @foreach($capaian as $key => $value)
                                         <tr>
                                             <td scope="row" style="text-align:center">
-                                                {{ $key+1 }}
+                                                {{ ($capaian->currentpage()-1) * $capaian->perpage() + $key + 1 }}
                                             </td>
                                             <td style="text-align:center">
                                                 {{ $value->nama }}
@@ -88,7 +88,7 @@
                             <div class="card-footer py-4">
                                 <nav aria-label="...">
                                     <ul class="pagination justify-content-end mb-0">
-                                        <h3 class="mb-0">{{ $capaian->links() }}</h3>
+                                        <h3 class="mb-0">{{ $capaian->appends(request()->input())->links() }}</h3>
                                     </ul>
                                 </nav>
                             </div>
